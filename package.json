@@ -9,16 +9,35 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.40.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "firebase": "^10.12.2",
+    "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.3"
+    "react-hook-form": "^7.51.5",
+    "react-icons": "^5.2.1",
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^2.1.5",
+    "zod": "^3.23.8",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/js": "^9.3.0",
+    "@hookform/resolvers": "^3.4.2",
+    "@rocketseat/eslint-config": "^2.2.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3"
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.2",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-unused-imports": "^3.1.0",
+    "typescript-plugin-css-modules": "^5.1.0"
   }
 }

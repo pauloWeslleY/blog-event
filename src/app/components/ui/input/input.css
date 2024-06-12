@@ -1,0 +1,43 @@
+.ui.form .field>input {
+  display: flex;
+  flex-direction: column;
+  width: 25em;
+  border-radius: 5em;
+  transition: .3s ease-in-out;
+  font-size: 1.115em;
+  font-weight: 600;
+  color: var(--violet-600);
+  font-family: var(--font-montserrat);
+}
+
+.ui.form .field>input::placeholder {
+  font-size: 1.2em;
+  font-weight: 400;
+  font-family: var(--font-montserrat);
+}
+
+.ui.form .field>input:focus {
+  color: var(--violet-600);
+  border-color: var(--violet-700);
+}
+
+.ui.form .field>input:focus-visible {
+  border-radius: 1em;
+  width: 30em;
+}
+
+.ui.form .field>label {
+  font-size: 1.175em;
+  font-weight: 700;
+  font-family: var(--font-montserrat);
+  color: var(--violet-900);
+}
+
+.ui.form .field>span {
+  display: inline-block;
+  margin-top: 0.75em;
+  font-size: 1.2em;
+  font-weight: 700;
+  font-family: var(--font-montserrat);
+  color: #B03060;
+}

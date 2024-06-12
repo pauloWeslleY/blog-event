@@ -1,0 +1,26 @@
+form.ui.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form.ui.form>button {
+  margin-top: 0.75em;
+  padding: 1em 4em;
+  font-size: 1.1em;
+  font-family: var(--font-montserrat);
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  background-color: var(--violet-700);
+  color: var(--indigo-50);
+  transition: .2s ease-in-out;
+  border-radius: 5em;
+}
+
+form.ui.form>button:hover {
+  transform: translateY(-2px);
+  background-color: var(--violet-200);
+  color: var(--violet-900);
+  box-shadow: var(--shadow-lg);
+}
