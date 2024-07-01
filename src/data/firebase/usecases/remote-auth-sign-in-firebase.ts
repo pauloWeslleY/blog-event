@@ -1,7 +1,7 @@
 import { Auth, signInWithEmailAndPassword, UserCredential } from 'firebase/auth'
-import { IFirebaseAuth, ISignIn } from '@/data/firebase'
+import { IAuth, IFirebaseAuth, ISignIn } from '@/data/firebase'
 
-class RemoteAuthSignIn implements ISignIn<Auth, ISignIn.Model<UserCredential>> {
+class RemoteAuthSignIn implements IAuth.SignInAuth {
   public signIn = {} as ISignIn.Model<UserCredential>
 
   async authSignIn(
@@ -17,14 +17,11 @@ class RemoteAuthSignIn implements ISignIn<Auth, ISignIn.Model<UserCredential>> {
         }
       })
       .catch((err) => {
-        const errorCode = err.code
-        const errorMessage = err.message
-
         this.signIn = {
           user: null,
           error: {
-            errorCode,
-            errorMessage,
+            errorCode: err.code,
+            errorMessage: err.message,
           },
         }
       })

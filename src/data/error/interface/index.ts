@@ -1,1 +1,2 @@
-export * from './auth-error-code'
+export * from './error-interface'
+export * from './firebase-error-code'

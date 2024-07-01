@@ -1,7 +1,7 @@
 import { UserCredential } from 'firebase/auth'
 import { IAuthSignUp } from '@/core/authentication'
 import { IUser, IUserSignUp } from '@/core/user'
-import { AuthErrorCode, AuthErrors } from '@/data/error'
+import { Errors, FirebaseErrorCode, FirebaseErrors } from '@/data/error'
 
 export class RemoteUserSignUp implements IUserSignUp {
   constructor(
@@ -11,28 +11,20 @@ export class RemoteUserSignUp implements IUserSignUp {
   ) { }
 
   async register(params: IUserSignUp.Params): Promise<IUserSignUp.Model> {
-    const register = await this.auth.signUp(params)
-    const { data, username } = register
+    const { data, username } = await this.auth.signUp(params)
 
-    if (
-      data.error?.errorCode === AuthErrorCode.EMAIL_ALREADY_IN_USE ||
-      data.user === null
-    ) {
-      return new AuthErrors.EmailAlreadyInUse().message
+    switch (data.error?.errorCode) {
+      case '':
+        return await this.user.create({
+          data: data?.user || ({} as UserCredential),
+          username,
+        })
+      case FirebaseErrorCode.EMAIL_ALREADY_IN_USE:
+        return new FirebaseErrors.EmailAlreadyInUse().message
+      case FirebaseErrorCode.INVALID_PASSWORD_WEAK:
+        return new FirebaseErrors.InvalidPasswordWeakError().message
+      default:
+        return new Errors.UnexpectedError().message
     }
-
-    if (
-      data.error?.errorCode === AuthErrorCode.INVALID_PASSWORD_WEAK ||
-      data.user === null
-    ) {
-      return new AuthErrors.InvalidPasswordWeakError().message
-    }
-
-    const user = await this.user.create({
-      data: data?.user || ({} as UserCredential),
-      username,
-    })
-
-    return user
   }
 }

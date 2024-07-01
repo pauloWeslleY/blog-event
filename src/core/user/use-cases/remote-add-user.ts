@@ -12,15 +12,12 @@ export class RemoteUser implements IUser {
     // eslint-disable-next-line prettier/prettier
   ) { }
 
-  async create(params: IUser.Params): Promise<IUser.Model> {
-    const { data, username } = params
-    const dataUser = this.data.add({
+  async create({ data, username }: IUser.Params): Promise<IUser.Model> {
+    const { user } = this.data.add({
       id: data.user.uid,
       username,
       email: data.user.email || '',
     })
-
-    const { user } = dataUser
 
     const userRef = doc(
       this.database.getCollection(COLLECTIONS.USERS),

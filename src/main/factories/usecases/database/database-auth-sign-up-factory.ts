@@ -1,11 +1,6 @@
-import { Auth, UserCredential } from 'firebase/auth'
-import { ISignUp } from '@/data/firebase'
+import { IAuth } from '@/data/firebase'
 import { DBFactory } from '@/data/factories'
 
-type RemoteDatabaseAuthSignUpType = ISignUp<Auth, ISignUp.Model<UserCredential>>
-
-const makeRemoteDatabaseAuthSignUp = (): RemoteDatabaseAuthSignUpType => {
+export const makeRemoteDatabaseAuthSignUp = (): IAuth.SignUpAuth => {
   return DBFactory.signUpAuth()
 }
-
-export { makeRemoteDatabaseAuthSignUp }

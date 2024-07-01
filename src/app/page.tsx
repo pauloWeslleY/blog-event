@@ -1,24 +1,12 @@
 'use client'
-import { useEffect } from 'react'
-import { useUserStore } from '@/main/store/user'
 import { NavBar } from './components/layout'
-import { useDatabase } from './hook'
+import StartPage from './(home)/start-page/page'
 
 export default function Home() {
-  const { loadUserLogged } = useUserStore()
-  const { auth } = useDatabase()
-
-  useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        await loadUserLogged(user.uid)
-      }
-    })
-  }, [loadUserLogged, auth])
-
   return (
-    <main>
+    <div>
       <NavBar />
-    </main>
+      <StartPage />
+    </div>
   )
 }

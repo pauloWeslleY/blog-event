@@ -1,0 +1,21 @@
+.form_group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.15em;
+  width: 100%;
+}
+
+.form_group>label {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 1.35em;
+  color: var(--violet-950);
+}
+
+.form_group>span {
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+  font-size: 1.05em;
+  color: var(--red-600);
+}

@@ -1,12 +1,12 @@
 import { ReactNode } from 'react'
-import { NavBar } from '../components/layout'
+import { NavBar } from '@/app/components/layout'
 
 const LayoutHome = ({ children }: { children: ReactNode }) => {
   return (
     <div>
       <NavBar />
 
-      {children}
+      <main className="ui container">{children}</main>
     </div>
   )
 }

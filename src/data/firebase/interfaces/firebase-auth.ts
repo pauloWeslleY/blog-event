@@ -14,9 +14,3 @@ export namespace IFirebaseAuth {
     error: Error | null
   }
 }
-
-export interface IFirebaseAuth<T, R> {
-  signUp(auth: R, params: IFirebaseAuth.Params): Promise<T>
-  signIn(auth: R, params: IFirebaseAuth.Params): Promise<T>
-  signOut(auth: R): Promise<void>
-}

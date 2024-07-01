@@ -3,10 +3,10 @@ import { Auth, getAuth } from 'firebase/auth'
 import { FirebaseStorage, getStorage } from 'firebase/storage'
 import { FirebaseApp } from 'firebase/app'
 import { COLLECTIONS, IFirebase } from '@/data/firebase'
-import { initApp } from './index'
 
 export class RemoteFirebase implements IFirebase {
-  private initApp: FirebaseApp = initApp.initializeApp()
+  // eslint-disable-next-line prettier/prettier
+  constructor(private initApp: FirebaseApp) { }
 
   app(): FirebaseApp {
     return this.initApp

@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import { AppProvider } from '@/main/providers'
-import 'semantic-ui-css/semantic.min.css'
+import '@radix-ui/themes/tokens.css'
+import '@radix-ui/themes/components.css'
+import '@radix-ui/themes/utilities.css'
 import './styles/globals.css'
 
 const montserrat = Montserrat({

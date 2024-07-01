@@ -1,12 +1,12 @@
 export const Banner = () => (
-  <svg width="800" height="987" xmlns="http://www.w3.org/2000/svg">
+  <svg width="800" height="450" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" style={{ stopColor: '#4f46e5', stopOpacity: 1 }} />
         <stop offset="100%" style={{ stopColor: '#fda4af', stopOpacity: 1 }} />
       </linearGradient>
     </defs>
-    <rect width="800" height="987" fill="url(#grad1)" />
+    <rect width="800" height="450" fill="url(#grad1)" />
     <text
       x="50%"
       y="40%"

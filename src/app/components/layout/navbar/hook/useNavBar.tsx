@@ -1,20 +1,20 @@
 import { useUserAuth } from '@/app/hook'
 import { useUserStore } from '@/main/store/user'
+import { MenuOptionsProps } from '@/app/components/layout/navbar/types'
 
 const useNavBar = () => {
   const { handleLogout } = useUserAuth()
   const { user } = useUserStore()
 
-  const options = () => [
+  const loadOptions = (): MenuOptionsProps => [
     {
       key: 'sign-out',
       text: 'Sign Out',
-      icon: 'sign out',
       action: () => handleLogout(),
     },
   ]
 
-  const navList = () => {
+  const getNavList = () => {
     if (user?.accessToken) {
       return [
         { text: 'Home', path: '/' },
@@ -26,7 +26,7 @@ const useNavBar = () => {
     }
   }
 
-  return { options, navList }
+  return { loadOptions, getNavList }
 }
 
 export { useNavBar }

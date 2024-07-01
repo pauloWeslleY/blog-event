@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { IFirebaseAuth } from './firebase-auth'
 
 export namespace ISignUp {
@@ -10,5 +9,3 @@ export namespace ISignUp {
 export interface ISignUp<T, R> {
   authSignUp(auth: T, params: ISignUp.Params): Promise<R>
 }
-
-

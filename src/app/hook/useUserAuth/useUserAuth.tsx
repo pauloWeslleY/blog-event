@@ -1,6 +1,6 @@
-import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import {
+  makeRemoteError,
   makeRemoteSignOut,
   makeRemoteUserAuthSignIn,
   makeRemoteUserAuthSignUp,
@@ -10,8 +10,8 @@ import {
   useUserAuthStore,
   useUserStore,
 } from '@/main/store'
-import { useErrors } from '@/app/hook'
 import { IAuthSignIn, IAuthSignUp } from '@/core/authentication'
+import { logoutCurrentUserAdapter } from '@/main/adapters/user-logged-adapter'
 import { UserAuthType } from './types'
 
 const useUserAuth = (): UserAuthType => {
@@ -22,38 +22,35 @@ const useUserAuth = (): UserAuthType => {
   const { setLogout } = useUserStore()
   const { setUserAuth } = useUserAuthStore()
   const { setUserAuthSignIn } = useUserAuthSignInStore()
-  const { emailAlreadyInUse, userNotFound, toManyRequests } = useErrors()
+  const isError = makeRemoteError()
 
-  const signUp = useMutation({
-    mutationFn: async (params: IAuthSignUp.Params) => {
-      const response = await userAuthSignUp.register(params)
-      setUserAuth(response)
+  const signUp = async (params: IAuthSignUp.Params) => {
+    const response = await userAuthSignUp.register(params)
+    const errSignUp = isError.isVerifyErrorMessage(response)
+    setUserAuth(response)
 
-      if (response !== emailAlreadyInUse.message) {
-        return router.push('/')
-      }
-    },
-  })
+    if (errSignUp !== '') {
+      return errSignUp
+    }
 
-  const signIn = useMutation({
-    mutationFn: async (params: IAuthSignIn.Params) => {
-      const response = await userAuthSignIn.login(params)
-      setUserAuthSignIn(response)
+    return router.push('/')
+  }
 
-      if (response === userNotFound.message) {
-        return userNotFound.message
-      }
+  const signIn = async (params: IAuthSignIn.Params) => {
+    const response = await userAuthSignIn.login(params)
+    const errSignIn = isError.isVerifyErrorMessage(response)
+    setUserAuthSignIn(response)
 
-      if (response === toManyRequests.message) {
-        return toManyRequests.message
-      }
+    if (errSignIn !== '') {
+      return errSignIn
+    }
 
-      return router.push('/')
-    },
-  })
+    return router.push('/')
+  }
 
   const handleLogout = async () => {
     await userAuthSignOut.logOut()
+    logoutCurrentUserAdapter()
     setLogout()
   }
 

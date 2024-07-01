@@ -1,0 +1,62 @@
+section.form-wrapper {
+  margin: 0 25rem;
+}
+
+section.form-wrapper>form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65em;
+}
+
+section.form-wrapper>form>section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65em;
+}
+
+form .input-upload {
+  margin: 1em 10em;
+  cursor: pointer;
+  font-size: 1.52em;
+  font-weight: 400;
+  font-family: var(--font-montserrat);
+  color: var(--violet-700);
+  position: relative;
+  transition: all 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px dashed var(--violet-700);
+  border-radius: 1em;
+  padding-top: 2em;
+}
+
+form .input-upload>h3.ui.header {
+  font-size: 0.75em;
+  font-weight: 400;
+  font-family: var(--font-montserrat);
+}
+
+form .input-upload:hover {
+  color: var(--violet-950);
+}
+
+form .input-upload .input-hidden {
+  visibility: hidden;
+}
+
+form .rt-Button {
+  transition: all .3s ease-in;
+  cursor: pointer;
+  width: 35%;
+  align-self: center;
+}
+
+form .rt-Button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}

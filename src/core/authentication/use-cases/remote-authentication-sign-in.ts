@@ -10,12 +10,7 @@ export class RemoteAuthenticationSignIn implements IAuthSignIn {
   ) { }
 
   async signIn(params: IAuthSignIn.Params): Promise<IAuthSignIn.Model> {
-    const { email, password } = params
-
-    const response = await this.auth.authSignIn(this.database.auth(), {
-      email,
-      password,
-    })
+    const response = await this.auth.authSignIn(this.database.auth(), params)
 
     return {
       data: response,

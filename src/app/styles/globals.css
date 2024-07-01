@@ -6,6 +6,25 @@
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  width: 0.85rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--zinc-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--violet-300);
+  border-radius: 2.2rem;
+}
+
 body {
+  font-family: var(--font-montserrat);
+}
+
+button,
+.rt-BaseButton {
+  cursor: pointer;
   font-family: var(--font-montserrat);
 }

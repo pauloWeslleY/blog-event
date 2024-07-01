@@ -1,6 +1,6 @@
 import { IAuthSignIn } from '@/core/authentication'
 import { IUserSignIn } from '@/core/user'
-import { AuthErrorCode, AuthErrors } from '@/data/error'
+import { Errors, FirebaseErrorCode, FirebaseErrors } from '@/data/error'
 
 export class RemoteUserSignIn implements IUserSignIn {
   constructor(
@@ -9,30 +9,23 @@ export class RemoteUserSignIn implements IUserSignIn {
   ) { }
 
   async login(params: IUserSignIn.Params): Promise<IUserSignIn.Model> {
-    const login = await this.auth.signIn(params)
-    const { data } = login
+    const { data } = await this.auth.signIn(params)
 
-    if (
-      data.error?.errorCode === AuthErrorCode.TOO_MANY_REQUESTS ||
-      data.user === null
-    ) {
-      return new AuthErrors.TooManyRequestsError().message
+    switch (data.error?.errorCode) {
+      case '':
+        if (data.user) {
+          return data.user
+        }
+        return ''
+      case FirebaseErrorCode.TOO_MANY_REQUESTS:
+        return new FirebaseErrors.TooManyRequestsError().message
+      case FirebaseErrorCode.USER_NOT_FOUND:
+        return new FirebaseErrors.UserNotFound().message
+      case FirebaseErrorCode.INVALID_PASSWORD_WRONG:
+        return new FirebaseErrors.InvalidPasswordWrongError().message
+
+      default:
+        return new Errors.UnexpectedError().message
     }
-
-    if (
-      data.error?.errorCode === AuthErrorCode.USER_NOT_FOUND ||
-      data.user === null
-    ) {
-      return new AuthErrors.UserNotFound().message
-    }
-
-    if (
-      data.error?.errorCode === AuthErrorCode.INVALID_PASSWORD_WRONG ||
-      data.user === null
-    ) {
-      return new AuthErrors.InvalidPasswordWrongError().message
-    }
-
-    return data.user
   }
 }

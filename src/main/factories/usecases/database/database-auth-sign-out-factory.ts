@@ -1,11 +1,6 @@
-import { Auth } from 'firebase/auth'
-import { ISignOut } from '@/data/firebase'
+import { IAuth } from '@/data/firebase'
 import { DBFactory } from '@/data/factories'
 
-type RemoteDatabaseAuthSignOutType = ISignOut<Auth>
-
-const makeRemoteDatabaseAuthSignOut = (): RemoteDatabaseAuthSignOutType => {
+export const makeRemoteDatabaseAuthSignOut = (): IAuth.SignOutAuth => {
   return DBFactory.signOutAuth()
 }
-
-export { makeRemoteDatabaseAuthSignOut }

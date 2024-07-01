@@ -11,8 +11,8 @@ type UserStoreProps = {
 export const useUserStore = create<UserStoreProps>((set) => ({
   user: {} as IUserRepo.Model,
   loadUserLogged: async (id: string) => {
-    const response = makeRemoteUserLogged()
-    const data = await response.getUserLogged(id)
+    const userLogged = makeRemoteUserLogged()
+    const data = await userLogged.getUserLogged(id)
     set({ user: data })
   },
   setLogout: () => set({ user: null }),

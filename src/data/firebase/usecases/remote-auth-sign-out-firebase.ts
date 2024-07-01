@@ -1,7 +1,7 @@
 import { Auth, signOut } from 'firebase/auth'
-import { ISignOut } from '@/data/firebase'
+import { IAuth } from '@/data/firebase'
 
-export class RemoteAuthSignOut implements ISignOut<Auth> {
+export class RemoteAuthSignOut implements IAuth.SignOutAuth {
   async signOut(auth: Auth): Promise<void> {
     await signOut(auth)
   }
