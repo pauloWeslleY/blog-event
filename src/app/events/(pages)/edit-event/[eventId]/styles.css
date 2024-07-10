@@ -1,0 +1,10 @@
+.edit-event-container {
+  padding-inline: 0.85em;
+}
+
+.header-edit-event {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block: 1em;
+}

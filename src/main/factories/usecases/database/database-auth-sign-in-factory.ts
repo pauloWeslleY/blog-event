@@ -1,6 +1,6 @@
-import { IAuth } from '@/data/firebase'
-import { DBFactory } from '@/data/factories'
+import { DBFirebase, IAuth } from '@/data/firebase'
+import { makeRemoteDatabase } from './index'
 
 export const makeRemoteDatabaseAuthSignIn = (): IAuth.SignInAuth => {
-  return DBFactory.signInAuth()
+  return DBFirebase.signInAuth(makeRemoteDatabase().auth())
 }

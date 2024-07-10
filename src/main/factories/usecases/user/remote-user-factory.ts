@@ -1,4 +1,4 @@
-import { IUser, RemoteUser } from '@/core/user'
+import { IUser, RemoteUser } from '@/data/firebase'
 import { makeRemoteDatabase } from '@/main/factories/usecases'
 
 export const makeRemoteUser = (): IUser => {

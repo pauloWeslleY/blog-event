@@ -1,2 +1,2 @@
 export * from './user'
-export * from './db-factory'
+export * from './events'

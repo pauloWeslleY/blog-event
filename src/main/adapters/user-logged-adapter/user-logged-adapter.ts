@@ -1,5 +1,5 @@
+import { AccountModel } from '@/domain/models'
 import { makeSessionStorageAdapter } from '@/main/factories/cache'
-import { AccountModel } from '@/core/authentication'
 
 export const setCurrentUserAdapter = (user: object): void => {
   makeSessionStorageAdapter().set('user-logged', user)

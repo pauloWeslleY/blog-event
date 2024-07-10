@@ -1,0 +1,5 @@
+div.navbar>.menu-wrapper>button.rt-BaseButton {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}

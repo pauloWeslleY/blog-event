@@ -1,6 +1,6 @@
-import { IUserLogged, RemoteUserLogged } from '@/core/user'
+import { IUserInfo, RemoteUserInfo } from '@/data/firebase'
 import { makeRemoteDatabase } from '@/main/factories/usecases'
 
-export const makeRemoteUserLogged = (): IUserLogged => {
-  return new RemoteUserLogged(makeRemoteDatabase())
+export const makeRemoteUserLogged = (): IUserInfo => {
+  return new RemoteUserInfo(makeRemoteDatabase())
 }

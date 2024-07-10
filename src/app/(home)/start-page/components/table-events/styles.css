@@ -1,5 +1,5 @@
 .rt-TableHeader>.rt-TableRow {
-  color: var(--violet-700);
+  color: var(--violet-600);
 }
 
 .rt-TableRow {
@@ -8,5 +8,5 @@
   font-weight: 500;
   letter-spacing: 1.1px;
   color: var(--violet-400);
-  background-color: var(--zinc-50);
+  background-color: var(--zinc-900);
 }

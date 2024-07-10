@@ -1,6 +1,8 @@
-import { getCurrentUserAdapter } from '@/main/adapters/user-logged-adapter'
+'use server'
+import { cookies } from 'next/headers'
 
 export const checkUserAuthenticated = () => {
-  const userToken = getCurrentUserAdapter()?.accessToken
-  return !!userToken
+  const cookieStore = cookies()
+  const userToken = cookieStore.has('token')
+  return userToken
 }

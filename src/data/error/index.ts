@@ -1,2 +1,2 @@
 export * from './interface'
-export * from './use-cases'
+export * from './usecases'

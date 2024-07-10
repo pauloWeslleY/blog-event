@@ -1,10 +1,10 @@
-import { useUserAuth } from '@/app/hook'
-import { useUserStore } from '@/main/store/user'
+import { useLogout } from '@/app/hook'
 import { MenuOptionsProps } from '@/app/components/layout/navbar/types'
+import { useUserAuthStore } from '@/main/store'
 
 const useNavBar = () => {
-  const { handleLogout } = useUserAuth()
-  const { user } = useUserStore()
+  const { handleLogout } = useLogout()
+  const { userAuth } = useUserAuthStore()
 
   const loadOptions = (): MenuOptionsProps => [
     {
@@ -15,11 +15,10 @@ const useNavBar = () => {
   ]
 
   const getNavList = () => {
-    if (user?.accessToken) {
+    if (userAuth.accessToken) {
       return [
         { text: 'Home', path: '/' },
-        { text: 'Publicar Eventos', path: '/create-events' },
-        { text: 'Meus Eventos', path: '/events' },
+        { text: 'Eventos', path: '/events' },
       ]
     } else {
       return [{ text: 'Home', path: '/' }]

@@ -4,6 +4,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  min-width: 0;
 }
 
 ::-webkit-scrollbar {
@@ -20,11 +21,40 @@
 }
 
 body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   font-family: var(--font-montserrat);
+}
+
+.title {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+  font-size: 1.75em;
+  color: var(--violet-300);
 }
 
 button,
 .rt-BaseButton {
   cursor: pointer;
   font-family: var(--font-montserrat);
+}
+
+.rt-TextFieldRoot,
+.rt-SelectTrigger,
+.rt-SelectLabel,
+.rt-SelectItem,
+.rt-TextAreaRoot>textarea.rt-reset.rt-TextAreaInput {
+  font-family: var(--font-montserrat) !important;
+  font-size: 1.15em;
+  color: var(--zinc-200);
+}
+
+.rt-SelectItem {
+  cursor: pointer;
+}
+
+.wrapper {
+  max-width: 1152px;
+  margin-inline: auto;
+  padding: 40px 24px;
 }

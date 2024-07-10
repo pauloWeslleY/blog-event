@@ -1,11 +1,11 @@
 'use client'
 
 import { Alert } from '@/app/components/ui'
-import { IUserSignIn, IUserSignUp } from '@/core/user'
+import { AccountModel } from '@/domain/models'
 import { makeRemoteError } from '@/main/factories/usecases'
 
 type FormErrorType = {
-  error: IUserSignIn.Model | IUserSignUp.Model
+  error: AccountModel | undefined | string
 }
 
 const FormError = ({ error }: FormErrorType) => {

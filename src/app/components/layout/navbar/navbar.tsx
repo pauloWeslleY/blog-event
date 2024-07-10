@@ -1,9 +1,8 @@
 'use client'
-
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { Button, Flex, TabNav } from '@radix-ui/themes'
-import { useUserStore } from '@/main/store/user'
+import { Button, TabNav } from '@radix-ui/themes'
+import { useUserAuthStore } from '@/main/store'
 import { useNavBar } from './hook'
 import { MenuProfile } from './components'
 import './styles.css'
@@ -11,11 +10,11 @@ import './styles.css'
 const NavBar = () => {
   const router = useRouter()
   const pathname = usePathname()
-  const { user } = useUserStore()
+  const { userAuth } = useUserAuthStore()
   const { getNavList, loadOptions } = useNavBar()
 
   return (
-    <nav className="navbar">
+    <div className="navbar">
       <TabNav.Root>
         {getNavList().map((props) => (
           <TabNav.Link
@@ -30,15 +29,14 @@ const NavBar = () => {
         ))}
       </TabNav.Root>
 
-      {user?.accessToken ? (
-        <MenuProfile options={loadOptions()} />
+      {userAuth.accessToken ? (
+        <div className="menu-wrapper">
+          <MenuProfile options={loadOptions()} />
+        </div>
       ) : (
-        <Flex gap="2">
-          <Button onClick={() => router.push('/register')}>Sign up</Button>
-          <Button onClick={() => router.push('/login')}>Login</Button>
-        </Flex>
+        <Button onClick={() => router.push('/auth')}>Login</Button>
       )}
-    </nav>
+    </div>
   )
 }
 

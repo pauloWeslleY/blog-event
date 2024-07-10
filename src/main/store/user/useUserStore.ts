@@ -1,19 +1,17 @@
 import { create } from 'zustand'
 import { IUserRepo } from '@/data/factories'
-import { makeRemoteUserLogged } from '@/main/factories/usecases'
+import { makeRemoteUserDetails } from '@/main/factories/usecases'
 
 type UserStoreProps = {
   user: IUserRepo.Model | null
-  loadUserLogged: (id: string) => Promise<void>
-  setLogout: () => void
+  loadUser: () => Promise<void>
 }
 
 export const useUserStore = create<UserStoreProps>((set) => ({
   user: {} as IUserRepo.Model,
-  loadUserLogged: async (id: string) => {
-    const userLogged = makeRemoteUserLogged()
-    const data = await userLogged.getUserLogged(id)
+  loadUser: async () => {
+    const userLogged = makeRemoteUserDetails('/api/user')
+    const data = await userLogged.getUserDetail()
     set({ user: data })
   },
-  setLogout: () => set({ user: null }),
 }))

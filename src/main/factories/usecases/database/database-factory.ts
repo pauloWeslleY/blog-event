@@ -1,6 +1,5 @@
-import { DBFactory } from '@/data/factories'
-import { IFirebase } from '@/data/firebase'
+import { DBFirebase, IFirebase } from '@/data/firebase'
 
 export const makeRemoteDatabase = (): IFirebase => {
-  return DBFactory.database()
+  return DBFirebase.database()
 }

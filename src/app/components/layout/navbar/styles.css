@@ -1,10 +1,12 @@
 @import '@radix-ui/colors/violet.css';
 
 .navbar {
-  background-color: var(--violet-8);
+  background-color: var(--violet-3);
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  gap: 1em;
-  padding: 0.45em 10em 0;
+  padding-inline: 0.75em;
+  border-radius: 0.65em;
+  box-shadow: var(--shadow-shape);
 }

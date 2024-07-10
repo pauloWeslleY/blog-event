@@ -1,21 +1,24 @@
-import { forwardRef, InputHTMLAttributes } from 'react'
+import { ComponentProps, ElementType, forwardRef } from 'react'
 import './input.css'
 
-type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  label: string
+type InputProps = ComponentProps<'input'> & {
   error?: boolean
   helperText?: string | undefined
+  icon?: ElementType
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, helperText, error, ...rest }, ref) => {
+  ({ icon: Icon, helperText, error, ...rest }, ref) => {
     return (
-      <div className={error ? 'field error' : 'field'}>
-        <label>{label}</label>
-        <input {...rest} ref={ref} />
+      <fieldset className="fieldset">
+        <div className="form-control">
+          {Icon && <Icon />}
+
+          <input {...rest} ref={ref} className="input" />
+        </div>
 
         {error && <span>{helperText}</span>}
-      </div>
+      </fieldset>
     )
   },
 )

@@ -1,12 +1,14 @@
 import { create } from 'zustand'
-import { IUserSignUp } from '@/core/user'
+import { AccountModel } from '@/domain/models'
 
 export type UserAuthStoreProps = {
-  userAuth: IUserSignUp.Model
-  setUserAuth: (params: IUserSignUp.Model) => void
+  userAuth: AccountModel
+  setUserAuth: (params: AccountModel) => void
+  setLogout: () => void
 }
 
 export const useUserAuthStore = create<UserAuthStoreProps>((set) => ({
-  userAuth: {} as IUserSignUp.Model,
+  userAuth: {} as AccountModel,
   setUserAuth: (params) => set({ userAuth: params }),
+  setLogout: () => set({ userAuth: {} as AccountModel }),
 }))

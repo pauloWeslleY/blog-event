@@ -3,19 +3,19 @@
   flex-direction: column;
   justify-content: center;
   gap: 0.15em;
-  width: 100%;
+  flex: 1;
 }
 
 .form_group>label {
   font-family: var(--font-montserrat);
-  font-weight: 600;
-  font-size: 1.35em;
-  color: var(--violet-950);
+  font-weight: 500;
+  font-size: 1.05em;
+  color: var(--zinc-300);
 }
 
 .form_group>span {
   font-family: var(--font-montserrat);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.05em;
-  color: var(--red-600);
+  color: var(--red-500);
 }

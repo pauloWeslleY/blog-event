@@ -1,7 +1,9 @@
-import { AccountModel } from '@/core/authentication'
-
 export namespace IUserRepo {
-  export type Model = AccountModel
+  export type Model = {
+    id: string
+    email: string
+    username: string
+  }
 }
 
 export interface IUserRepo {

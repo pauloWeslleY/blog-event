@@ -1,16 +1,19 @@
 import { FormGroupProps } from './types'
 import Styles from './styles.module.css'
 
-const FormGroup = (props: FormGroupProps) => {
-  const { label, children, error, helperText, ...rest } = props
-
+export function FormGroup({
+  label,
+  children,
+  error,
+  helperText,
+  className,
+  ...rest
+}: FormGroupProps) {
   return (
-    <div className={Styles.form_group}>
-      <label {...rest}>{label}</label>
+    <div className={[Styles.form_group, className].join(' ')}>
+      {label && <label {...rest}>{label}</label>}
       {children}
       {error && <span>{helperText}</span>}
     </div>
   )
 }
-
-export { FormGroup }

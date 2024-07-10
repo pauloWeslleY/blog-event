@@ -1,6 +1,9 @@
-import { IUserSignUp, RemoteUserSignUp } from '@/core/user'
-import { makeRemoteAuthSignUp, makeRemoteUser } from '@/main/factories/usecases'
+import { IUserSignUp, RemoteUserSignUp } from '@/data/firebase'
+import {
+  makeRemoteDatabaseAuthSignUp,
+  makeRemoteUser,
+} from '@/main/factories/usecases'
 
 export const makeRemoteUserAuthSignUp = (): IUserSignUp => {
-  return new RemoteUserSignUp(makeRemoteAuthSignUp(), makeRemoteUser())
+  return new RemoteUserSignUp(makeRemoteDatabaseAuthSignUp(), makeRemoteUser())
 }

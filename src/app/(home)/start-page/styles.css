@@ -1,12 +1,11 @@
 .table-container {
-  margin: 0 25em;
-  padding-bottom: 2em;
+  padding-inline: 2em;
 }
 
-section>.ui.header {
+.table-container>h1 {
   font-family: var(--font-montserrat);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.75em;
-  color: var(--violet-950);
+  color: var(--violet-200);
   padding: 1em 0 0.35em;
 }
