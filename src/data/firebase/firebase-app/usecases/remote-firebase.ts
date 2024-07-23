@@ -24,13 +24,13 @@ export class RemoteFirebase implements IFirebase {
     return getFirestore(this.initApp)
   }
 
-  getCollection(path: COLLECTIONS): IFirebase.CollectionType {
+  collection(path: COLLECTIONS): IFirebase.CollectionType {
     return collection(this.getDB(), path)
   }
 
-  collection({
-    path,
+  subCollection({
     id,
+    path,
     collections,
   }: IFirebase.Params): IFirebase.CollectionType {
     return collection(this.getDB(), path, id, collections)

@@ -1,9 +1,17 @@
-import styles from './loader.module.css'
+import { ComponentProps } from 'react'
+import classNames from 'classnames'
+import './styles.css'
 
-const Loader = () => (
-  <div className={styles.wrapper__loader}>
-    <span className={styles.loader}></span>
-  </div>
-)
+interface LoaderProps extends ComponentProps<'div'> {
+  text?: string
+}
 
-export { Loader }
+export function Loader({ text = '', className, ...props }: LoaderProps) {
+  return (
+    <div {...props} className={classNames('loader__root-wrapper', className)}>
+      <span className="loader" />
+
+      {text && <p className="loader__text">{text}</p>}
+    </div>
+  )
+}

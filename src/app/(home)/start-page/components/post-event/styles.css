@@ -1,0 +1,49 @@
+.post-event__container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.5em;
+  box-shadow: var(--shadow-shape);
+  background: var(--zinc-900);
+  border-radius: 0.75em;
+}
+
+.post-event__container .post-event__header {
+  width: 100%;
+}
+
+.post-event__container .post-event__header img {
+  object-fit: cover;
+  border-radius: 0.65em;
+}
+
+.post-event__container .post-event__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 0.75em;
+}
+
+.post-event__container .post-event__content .post-event__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.010em;
+}
+
+.post-event__container .post-event__content .post-event__body .post-event__title {
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.post-event__container .post-event__content .post-event__body .post-event__description {
+  font-size: 0.94em;
+  font-weight: 400;
+}
+
+.post-event__container .post-event__content .post-event__body .post-event__date-hour {
+  display: inline-block;
+  font-size: 0.85em;
+  color: var(--violet-6);
+}

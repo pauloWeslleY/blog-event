@@ -1,0 +1,16 @@
+.radix-themes {
+  --default-font-family: var(--font-montserrat);
+}
+
+.rt-TextFieldRoot,
+.rt-SelectTrigger,
+.rt-SelectLabel,
+.rt-SelectItem {
+  font-family: var(--font-montserrat) !important;
+  font-size: 1.15em;
+  color: var(--zinc-200);
+}
+
+.rt-SelectItem {
+  cursor: pointer;
+}

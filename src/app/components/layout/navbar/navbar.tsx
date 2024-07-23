@@ -2,12 +2,13 @@
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { Button, TabNav } from '@radix-ui/themes'
+import { UserRound } from 'lucide-react'
 import { useUserAuthStore } from '@/main/store'
 import { useNavBar } from './hook'
 import { MenuProfile } from './components'
 import './styles.css'
 
-const NavBar = () => {
+export function NavBar() {
   const router = useRouter()
   const pathname = usePathname()
   const { userAuth } = useUserAuthStore()
@@ -30,14 +31,13 @@ const NavBar = () => {
       </TabNav.Root>
 
       {userAuth.accessToken ? (
-        <div className="menu-wrapper">
-          <MenuProfile options={loadOptions()} />
-        </div>
+        <MenuProfile options={loadOptions()} />
       ) : (
-        <Button onClick={() => router.push('/auth')}>Login</Button>
+        <Button onClick={() => router.push('/auth')}>
+          <UserRound className="icon-user-button" />
+          Login
+        </Button>
       )}
     </div>
   )
 }
-
-export { NavBar }

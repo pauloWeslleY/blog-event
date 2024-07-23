@@ -1,28 +1,32 @@
 import { ComponentProps, ElementType, forwardRef } from 'react'
+import classNames from 'classnames'
 import './input.css'
 
 type InputProps = ComponentProps<'input'> & {
+  icon?: ElementType
+  className?: string
   error?: boolean
   helperText?: string | undefined
-  icon?: ElementType
 }
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ icon: Icon, helperText, error, ...rest }, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ icon: Icon, helperText = '', error = false, className, ...rest }, ref) => {
     return (
-      <fieldset className="fieldset">
-        <div className="form-control">
-          {Icon && <Icon />}
+      <fieldset className={classNames('fieldset', className)}>
+        <div
+          className={classNames('fieldset--control', {
+            'fieldset--control-error': error,
+          })}
+        >
+          {Icon && <Icon className="fieldset--icon" />}
 
-          <input {...rest} ref={ref} className="input" />
+          <input {...rest} ref={ref} className="fieldset--input" />
         </div>
 
-        {error && <span>{helperText}</span>}
+        {error && <span className="fieldset--helper-text">{helperText}</span>}
       </fieldset>
     )
   },
 )
 
 Input.displayName = 'Input'
-
-export { Input }

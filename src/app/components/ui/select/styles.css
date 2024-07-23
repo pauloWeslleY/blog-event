@@ -1,0 +1,111 @@
+@import '@radix-ui/colors/black-alpha.css';
+@import '@radix-ui/colors/mauve.css';
+@import '@radix-ui/colors/violet.css';
+
+/* reset */
+button {
+  all: unset;
+}
+
+.select--trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+  flex: 1 0 auto;
+  background-color: var(--violet-2);
+  padding: 0.5em 1em;
+  border-radius: 0.75em;
+  color: var(--violet-12);
+  font-size: 1.2em;
+  font-family: var(--font-montserrat);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.select--trigger:hover {
+  background-color: var(--mauve-3);
+}
+
+.select--trigger[data-placeholder] {
+  color: var(--violet-9);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.select--icon {
+  color: Var(--violet-11);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select--content {
+  overflow: hidden;
+  background-color: var(--zinc-800);
+  border-radius: 0.75em;
+  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+}
+
+.select--viewport {
+  padding: 5px;
+}
+
+.select--item {
+  font-size: 1.3em;
+  line-height: 1;
+  color: var(--violet-11);
+  border-radius: 0.55em;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  padding: 0 35px 0 25px;
+  position: relative;
+  user-select: none;
+  font-family: var(--font-montserrat);
+  cursor: pointer;
+}
+
+.select--item[data-disabled] {
+  color: var(--mauve-8);
+  pointer-events: none;
+}
+
+.select--item[data-highlighted] {
+  outline: none;
+  background-color: var(--violet-10);
+  color: var(--violet-1);
+}
+
+.select-label {
+  padding: 0 25px;
+  font-size: 1.1em;
+  line-height: 25px;
+  color: var(--zinc-500);
+  font-family: var(--font-montserrat);
+}
+
+.select--separator {
+  height: 1px;
+  background-color: var(--violet-6);
+  margin: 5px;
+}
+
+.select--item-indicator {
+  position: absolute;
+  left: 0;
+  width: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select--scroll-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  background-color: white;
+  color: var(--violet-11);
+  cursor: default;
+}

@@ -6,24 +6,28 @@ import {
 } from '@/main/factories/usecases'
 import { ISignIn, IUserSignUp } from '@/data/firebase'
 import { useUserAuthStore } from '@/main/store'
+import { AccountModel } from '@/domain/models'
 import { UseAuthProps } from './types'
 
-const useAuth = (): UseAuthProps => {
+export function useAuth(): UseAuthProps {
   const router = useRouter()
   const { setUserAuth } = useUserAuthStore()
+
+  function handleIsVerifyAuthToken(params: AccountModel) {
+    if (!params.accessToken) {
+      return params
+    }
+
+    router.push('/')
+    return params
+  }
 
   const authSignIn = useMutation({
     mutationFn: async (params: ISignIn.Params) => {
       const login = makeRemoteAuthentication('/authentication/login')
       const response = await login.authentication(params)
       setUserAuth(response)
-
-      if (!response.accessToken) {
-        return response
-      }
-
-      router.push('/events')
-      return response
+      return handleIsVerifyAuthToken(response)
     },
     onError: (error) => error.message,
   })
@@ -33,18 +37,10 @@ const useAuth = (): UseAuthProps => {
       const register = makeRemoteAddAccount('/authentication/register')
       const response = await register.add(params)
       setUserAuth(response)
-
-      if (!response.accessToken) {
-        return response
-      }
-
-      router.push('/events')
-      return response
+      return handleIsVerifyAuthToken(response)
     },
     onError: (error) => error.message,
   })
 
   return { authSignIn, authSignUp }
 }
-
-export { useAuth }

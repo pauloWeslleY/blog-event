@@ -1,0 +1,49 @@
+.event-card__container {
+  width: 100%;
+  min-width: 450px;
+  background-color: var(--zinc-900);
+  border-radius: 0.65em;
+  box-shadow: var(--shadow-shape);
+  padding: 0.2em 0.7em;
+}
+
+.event-card_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.event-card__body {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+}
+
+.event-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.event-card__title {
+  font-family: var(--font-montserrat);
+  font-size: 1.2em;
+  text-transform: capitalize;
+}
+
+.event-card__description {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--zinc-500);
+}
+
+.event-card__description p {
+  font-family: var(--font-montserrat);
+}
+
+.event-card__description span {
+  font-family: var(--font-montserrat);
+  font-size: 0.8em;
+  letter-spacing: 0.075em;
+}

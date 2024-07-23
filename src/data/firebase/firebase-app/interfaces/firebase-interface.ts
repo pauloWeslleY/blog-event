@@ -20,10 +20,10 @@ export namespace IFirebase {
 }
 
 export interface IFirebase {
-  getCollection(path: COLLECTIONS): IFirebase.CollectionType
-  collection(path: IFirebase.Params): IFirebase.CollectionType
-  getDB(): Firestore
-  auth(): Auth
-  storage(): FirebaseStorage
   app(): FirebaseApp
+  auth(): Auth
+  getDB(): Firestore
+  storage(): FirebaseStorage
+  collection(path: COLLECTIONS): IFirebase.CollectionType
+  subCollection(path: IFirebase.Params): IFirebase.CollectionType
 }

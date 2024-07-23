@@ -1,16 +1,14 @@
+import { UploadTask } from 'firebase/storage'
+
 export namespace IUploadImage {
   export type Params = {
-    username: string
-    image: File | null
+    name: string
+    file: File
   }
 
-  export type Model = {
-    imageURL: string
-    progress: number
-    error: string
-  }
+  export type Model = UploadTask
 }
 
 export interface IUploadImage {
-  upload(params: IUploadImage.Params): Promise<IUploadImage.Model>
+  upload(params: IUploadImage.Params): IUploadImage.Model
 }

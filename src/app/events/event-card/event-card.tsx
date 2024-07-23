@@ -1,57 +1,52 @@
 'use client'
-import { Avatar, Button, Card } from '@radix-ui/themes'
+import { Avatar, Button } from '@radix-ui/themes'
 import { useRouter } from 'next/navigation'
+import { Timestamp } from 'firebase/firestore'
 import { EventModel } from '@/domain/models'
 import { useFormatted } from '@/app/hook'
-import { RemoveEventModal } from './remove-event-modal'
-import styles from './styles.module.css'
+import { DeleteEventModal } from '@/app/events/delete-event-modal'
+import './styles.css'
 
 interface EventCardProps {
   event: EventModel
 }
 
 export function EventCard({ event }: EventCardProps) {
-  const { id, title, description, photoUrl, views, createdAt } = event
-
+  const { id, title, description, photoUrl, createdAt } = event
   const { formatted } = useFormatted()
-
   const router = useRouter()
 
   return (
-    <article className={styles.event_card__container}>
-      <Card size="1">
-        <div className={styles.event_card_wrapper}>
-          <div className={styles.event_card__body}>
-            <Avatar
-              size="4"
-              radius="full"
-              src={photoUrl}
-              fallback="Alt"
-              color="indigo"
-            />
-            <div>
-              <h3 className={styles.event_card__title}>{title}</h3>
-              <div className={styles.event_card__description}>
-                <p>{description}</p>
-                {' - '}
-                <span>
-                  {formatted.formatDateHour({ date: createdAt, hours: true })}
-                </span>
-              </div>
-              <div className={styles.event_card__description}>
-                <p>view: {views}</p>
-              </div>
+    <article className="event-card__container">
+      <div className="event-card_wrapper">
+        <div className="event-card__body">
+          <Avatar
+            size="4"
+            radius="full"
+            src={photoUrl}
+            fallback="Alt"
+            color="indigo"
+          />
+          <div>
+            <h3 className="event-card__title">{title}</h3>
+            <div className="event-card__description">
+              <p>{description}</p>
+              {' - '}
+              <span>
+                {formatted.formatDateHour({
+                  date: createdAt as Timestamp,
+                  hours: true,
+                })}
+              </span>
             </div>
           </div>
-
-          <div className={styles.event_card__actions}>
-            <Button onClick={() => router.push(`/events/edit-event/${id}`)}>
-              Editar
-            </Button>
-            <RemoveEventModal />
-          </div>
         </div>
-      </Card>
+
+        <div className="event-card__actions">
+          <Button onClick={() => router.push(`/events/${id}`)}>Editar</Button>
+          <DeleteEventModal eventId={id} />
+        </div>
+      </div>
     </article>
   )
 }

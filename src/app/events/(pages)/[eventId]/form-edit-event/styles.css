@@ -1,0 +1,95 @@
+@import '@radix-ui/colors/black-alpha.css';
+
+.form-edit-event__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.form-edit-event__banner {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.4em;
+  box-shadow: var(--shadow-shape);
+  border-radius: 1.2em;
+}
+
+.form-edit-event__banner>img {
+  object-fit: cover;
+  border-radius: 1.2em;
+}
+
+.form-edit-event__status-message {
+  display: flex;
+  justify-content: center;
+}
+
+.form-edit-event__header-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  padding-inline: 15em;
+  margin-bottom: 0.85em;
+}
+
+.form-edit-event__title {
+  font-size: 1.6em;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.75em;
+}
+
+.form-edit-event__separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--violet-3);
+}
+
+.form-edit-event__progress-wrapper {
+  display: flex;
+  gap: 0.25em;
+  height: 2em;
+  padding-inline: 15em;
+}
+
+.form-edit-event__wrapper form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0.45em;
+  padding-inline: 2.5em;
+}
+
+.form-edit-event__wrapper form div.form-edit-event__section {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.45em;
+}
+
+.form-edit-event__section .form-edit-event__input-date-event,
+.form-edit-event__section .form-edit-event__input-hour-event {
+  flex: 1;
+}
+
+.form-edit-event__wrapper form .fieldset.form-edit-event__input-file {
+  grid-column: span 2;
+}
+
+.form-edit-event__switch-wrapper {
+  display: flex;
+  padding-block: 0.4em;
+}
+
+.form-edit-event__footer {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+}
+
+.form-edit-event__footer>.rt-BaseButton {
+  text-transform: uppercase;
+  width: 25em;
+  margin-top: 0.5em;
+}

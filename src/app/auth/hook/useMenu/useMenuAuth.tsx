@@ -1,7 +1,7 @@
 import { Login, Register } from '@/app/auth/components'
 
 type LoadMenuAuthType = {
-  value: string
+  value: 'login' | 'register'
   label: string
   component: () => JSX.Element
 }

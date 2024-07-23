@@ -4,10 +4,10 @@ import './styles.css'
 
 export default function LayoutAuth({ children }: { children: ReactNode }) {
   return (
-    <div className="wrapper">
-      <section className="form-banner" />
+    <div className="auth-wrapper">
+      <div className="auth-banner" />
 
-      <div className="form">{children}</div>
+      <div className="auth-form">{children}</div>
     </div>
   )
 }

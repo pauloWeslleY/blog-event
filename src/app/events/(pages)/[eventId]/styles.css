@@ -1,0 +1,36 @@
+.edit-event__container {
+  padding-inline: 0.85em;
+}
+
+.edit-event__header {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  margin-block: 1em;
+}
+
+.edit-event__title {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.54em;
+}
+
+.edit-event__title .title {
+  font-size: 1.8em;
+}
+
+.edit-event__title span {
+  font-size: 1.3em;
+}
+
+.edit-event-main__wrapper {
+  margin-block: 1.25em;
+}
+
+.edit-event__status-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-block: 3em;
+  height: 20em;
+}

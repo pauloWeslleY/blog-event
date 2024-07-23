@@ -1,6 +1,5 @@
-import { RemoteAdd } from '@/core/usecases'
-import { IAdd } from '@/domain/interfaces'
-import { IAddEvent } from '@/domain/interfaces/add-event'
+import { RemoteAdd } from '@/core/utilities'
+import { IAddEvent } from '@/domain/interfaces'
 import { makeAxiosHttpClient } from '@/main/factories/http'
 
 type RemoteAddEventType = IAdd<IAddEvent.Params, IAddEvent.Model>

@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import {
-  makeRemoteError,
-  makeRemoteUserAuthSignUp,
-} from '@/main/factories/usecases'
+import { makeRemoteError } from '@/main/factories/usecases'
 import { IUserSignUp } from '@/data/firebase'
 import { AccountModel } from '@/domain/models'
 import { savedCookies } from '@/infra/cache/cookies'
+import { makeRemoteUserAuthSignUp } from '@/main/factories/firebase-database'
 
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as IUserSignUp.Params

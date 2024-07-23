@@ -1,8 +1,8 @@
 'use client'
 import { Button } from '@radix-ui/themes'
 import { LockKeyhole, Mail } from 'lucide-react'
-import { Alert, FormError, Input } from '@/app/components/ui'
-import Loading from '@/app/auth/loading'
+import { Alert, FormError, Input, Loader } from '@/app/components/ui'
+
 import { useLogin } from './hook'
 
 export function Login() {
@@ -22,11 +22,7 @@ export function Login() {
   }
 
   if (isPending) {
-    return (
-      <div className="container-loader-login">
-        <Loading />
-      </div>
-    )
+    return <Loader text="Autenticando" />
   }
 
   return (

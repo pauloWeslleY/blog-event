@@ -1,0 +1,17 @@
+div.event-info__detail-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.event-info__detail-content>span {
+  font-weight: 400;
+  font-size: 1.25em;
+  color: var(--violet-200);
+}
+
+div.event-info__detail-content>h3 {
+  font-weight: 600;
+  font-size: 1.45em;
+  color: var(--violet-800);
+}

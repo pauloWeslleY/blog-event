@@ -1,8 +1,10 @@
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SignUpProps } from '@/app/auth/components/register/types'
 import { useAuth } from '@/app/auth/hook'
 import { schemaAuthRegister } from '@/validation'
+import { useLoaderStore } from '@/main/store'
 
 const useRegister = () => {
   const {
@@ -20,11 +22,17 @@ const useRegister = () => {
     },
   })
 
+  const { setLoader } = useLoaderStore()
+
   const {
     authSignUp: { mutate, isError, isPending, error, data },
   } = useAuth()
 
-  const handleSignUp = (params: SignUpProps) => {
+  useEffect(() => {
+    setLoader(isPending)
+  }, [setLoader, isPending])
+
+  function handleSignUp(params: SignUpProps) {
     mutate(params)
   }
 

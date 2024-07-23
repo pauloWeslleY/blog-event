@@ -1,8 +1,8 @@
-div.container {
+.events__container {
   padding-inline: 0.85em;
 }
 
-div.container header.header-events {
+.events__container .events__header {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -10,15 +10,27 @@ div.container header.header-events {
   margin-block: 1em;
 }
 
-div.container header.header-events div.header-action {
+.events__container .events__header .events__header-action {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.35em;
 }
 
-.event-wrapper {
+.events__container .events__header .events__header-action .fieldset.events__input-search .fieldset--control {
+  height: 2em;
+  padding: 1.2em 0.5em;
+}
+
+.events__container .events__wrapper {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+}
+
+.events__container .events__loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15em;
 }

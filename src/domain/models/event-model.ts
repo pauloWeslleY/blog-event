@@ -11,5 +11,5 @@ export type EventModel = {
   ownerId: string
   views: number
   public: boolean
-  createdAt: Timestamp
+  createdAt: Timestamp | Date
 }

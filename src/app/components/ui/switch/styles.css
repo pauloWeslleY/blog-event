@@ -1,0 +1,53 @@
+@import '@radix-ui/colors/black-alpha.css';
+
+/* reset */
+button {
+  all: unset;
+}
+
+.switch--wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.switch--root {
+  width: 42px;
+  height: 25px;
+  background-color: var(--violet-3);
+  border-radius: 9999px;
+  position: relative;
+  box-shadow: 0 2px 10px var(--violet-2);
+  -webkit-tap-highlight-color: var(--violet-4);
+  cursor: pointer;
+}
+
+.switch--root:focus {
+  box-shadow: 0 0 0 2px var(--violet-11);
+}
+
+.switch--root[data-state='checked'] {
+  background-color: var(--violet-11);
+}
+
+.switch--thumb {
+  display: block;
+  width: 21px;
+  height: 21px;
+  background-color: white;
+  border-radius: 9999px;
+  box-shadow: 0 2px 2px var(--violet-2);
+  transition: transform 100ms;
+  transform: translateX(2px);
+  will-change: transform;
+}
+
+.switch--thumb[data-state='checked'] {
+  transform: translateX(19px);
+}
+
+.switch--label {
+  color: var(--violet-11);
+  font-size: 1.2em;
+  line-height: 1;
+}

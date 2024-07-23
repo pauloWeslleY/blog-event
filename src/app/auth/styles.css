@@ -10,9 +10,9 @@ input {
   all: unset;
 }
 
-.wrapper {
+.auth-wrapper {
   display: grid;
-  grid-template-columns: 950px 3fr;
+  grid-template-columns: 1150px 3fr;
   grid-template-areas: 'banner form';
   grid-template-rows: 1fr;
   min-height: 100vh;
@@ -23,16 +23,65 @@ input {
   background-size: cover;
 }
 
-.wrapper>.form-banner {
+.auth-wrapper .auth-banner {
   grid-area: banner;
 }
 
-.wrapper>.form {
+.auth-wrapper .auth-form {
   grid-area: form;
   place-self: center;
 }
 
-form {
+.auth-wrapper .tabs-root {
+  display: flex;
+  flex-direction: column;
+  width: 25em;
+  box-shadow: var(--shadow-shape);
+  background-color: var(--violet-5);
+  border-radius: 1em;
+}
+
+.auth-wrapper .tabs-root>.rt-TabsRoot .rt-TabsList {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+}
+
+.auth-wrapper .tabs-root>.rt-TabsRoot .rt-TabsList>button.rt-TabsTrigger {
+  cursor: pointer;
+  flex: 1;
+}
+
+.auth-wrapper .tabs-root>.rt-TabsRoot .rt-TabsList>button.rt-TabsTrigger .rt-TabsTriggerInner {
+  font-family: var(--font-montserrat);
+  font-size: 1.2em;
+  color: var(--zinc-100);
+  background-color: transparent;
+}
+
+.auth-wrapper .tabs-root>.rt-TabsRoot .rt-TabsList button.rt-TabsTrigger.rt-BaseTabListTrigger:where([data-state='active'], [data-active]) {
+  flex: 1;
+  background: var(--violet-6);
+}
+
+.auth-wrapper .tabs-root>.rt-TabsRoot .rt-TabsList button.rt-TabsTrigger.rt-BaseTabListTrigger:where([data-state='active'], [data-active]) .rt-TabsTriggerInner {
+  color: var(--violet-11);
+  font-weight: 600;
+}
+
+.auth-wrapper .tabs-content {
+  flex-grow: 1;
+  padding: 0.9em;
+  outline: none;
+  background-color: var(--violet-5);
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+.auth-wrapper .tabs-content form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -41,75 +90,35 @@ form {
   gap: 0.8em;
 }
 
-form>.rt-Button {
+.auth-wrapper .tabs-content form>.rt-Button {
   width: 100%;
   text-transform: uppercase;
   letter-spacing: 1.2px;
 }
 
-form .rt-CalloutRoot {
+.auth-wrapper .tabs-content form .rt-CalloutRoot {
   width: 100%;
 }
 
-.tabs-root {
+.auth-wrapper .tabs-content .tabs-actions {
+  padding: 0.9em;
   display: flex;
-  flex-direction: column;
-  width: 25em;
-  box-shadow: var(--shadow-shape);
-  background-color: var(--violet-5);
-  border-radius: 1rem;
-}
-
-.tabs-root>.rt-TabsRoot .rt-TabsList {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
   justify-content: center;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+  gap: 0.5em;
 }
 
-.tabs-root>.rt-TabsRoot .rt-TabsList>button.rt-TabsTrigger {
-  cursor: pointer;
-  flex: 1;
+.auth-wrapper .tabs-content .tabs-actions .tabs-actions--separator {
+  background-color: var(--zinc-500);
+  width: 1px;
+  height: 1.5em;
 }
 
-.tabs-root>.rt-TabsRoot .rt-TabsList>button.rt-TabsTrigger .rt-TabsTriggerInner {
-  font-family: var(--font-montserrat);
-  font-size: 1.2em;
-  color: var(--zinc-100);
-  background-color: transparent;
-}
-
-.tabs-root>.rt-TabsRoot .rt-TabsList button.rt-TabsTrigger.rt-BaseTabListTrigger:where([data-state='active'], [data-active]) {
-  flex: 1;
-  background: var(--violet-6);
-}
-
-.tabs-root>.rt-TabsRoot .rt-TabsList button.rt-TabsTrigger.rt-BaseTabListTrigger:where([data-state='active'], [data-active]) .rt-TabsTriggerInner {
+.auth-wrapper .tabs-content .tabs-actions a {
+  text-decoration: none;
   color: var(--violet-11);
-  font-weight: 600;
+  transition: 0.2s ease-in;
 }
 
-.tabs-content {
-  flex-grow: 1;
-  padding: 0.9rem;
-  outline: none;
-  background-color: var(--violet-5);
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-}
-
-.loader-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1em;
-}
-
-.loader-wrapper span {
-  font-size: 1em;
-  font-weight: 600;
-  color: var(--zinc-100);
-  font-family: var(--font-montserrat);
+.auth-wrapper .tabs-content .tabs-actions a:hover {
+  color: var(--zinc-300);
 }

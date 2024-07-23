@@ -1,5 +1,5 @@
-import { RemoteAdd } from '@/core/usecases'
-import { IAdd, IAddAccount } from '@/domain/interfaces'
+import { RemoteAdd } from '@/core/utilities'
+import { IAddAccount } from '@/domain/interfaces'
 import { makeAxiosHttpClient } from '@/main/factories/http'
 
 type RemoteAddAccountType = IAdd<IAddAccount.Params, IAddAccount.Model>

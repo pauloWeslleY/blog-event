@@ -1,0 +1,50 @@
+.rt-BaseDialogContent h1 {
+  font-family: var(--font-montserrat);
+  font-size: 1.45em;
+  font-weight: 500;
+}
+
+.rt-BaseDialogContent p {
+  font-family: var(--font-montserrat);
+  font-size: 1.25em;
+  font-weight: 400;
+  color: var(--zinc-500);
+}
+
+.form-create-event__progress-wrapper {
+  display: flex;
+  gap: 0.25em;
+  height: 2em;
+}
+
+.form-create-event--wrapper form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.7em;
+}
+
+.form-create-event--wrapper form>section.form-group-create-event--wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.65em;
+}
+
+.form-create-event--wrapper form .form-create-event--select-wrapper {
+  display: flex;
+}
+
+.form-create-event--wrapper form .form-create-event--select-wrapper .select--trigger {
+  width: max-content;
+}
+
+.form-create-event--wrapper form input[type="file"] {
+  cursor: pointer;
+}
+
+.form-create-event--wrapper form .rt-BaseButton {
+  margin-top: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+}

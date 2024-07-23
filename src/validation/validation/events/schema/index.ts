@@ -1,1 +1,1 @@
-export * from './create-event-schema'
+export * from './event-schema'

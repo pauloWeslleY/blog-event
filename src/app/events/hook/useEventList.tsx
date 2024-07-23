@@ -5,7 +5,7 @@ export function useEventList() {
   const loadEventList = useQuery({
     queryKey: ['list-events'],
     queryFn: () => {
-      const eventsList = makeRemoteListEvents('/event-list')
+      const eventsList = makeRemoteListEvents('/event/event-list')
       return eventsList.getListEvent()
     },
   })
