@@ -6,14 +6,6 @@ async function StartPage() {
   const response = makeRemoteListEvent()
   const eventList = await response.getListEvent()
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="loader-content">
-  //       <Loader text="Carregando lista de eventos" />
-  //     </div>
-  //   )
-  // }
-
   return (
     <section className="home-event__container">
       <header className="home-event__header">
