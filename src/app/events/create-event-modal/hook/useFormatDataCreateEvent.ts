@@ -1,5 +1,5 @@
 import { FormCreatedEventProps } from '@/app/events/create-event-modal/types'
-import { ICreateEvent } from '@/infra/firebase'
+import { ICreateEvent } from '@/data/usecases'
 
 export function useFormatDataCreateEvent() {
   const formatDataCreateEvent = (

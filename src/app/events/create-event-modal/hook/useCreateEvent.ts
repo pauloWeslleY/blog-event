@@ -21,25 +21,33 @@ export function useCreateEvent() {
 
   async function handlerCreateEvent(params: ICreateEvent.Params) {
     setEventIsLoading(true)
-    const event = makeRemoteCreateEvent()
-    const { data, error } = await event.createEvent(params)
-    const hasErroEvent = makeRemoteError(error?.code)
+    try {
+      const event = makeRemoteCreateEvent()
+      const { data, error } = await event.createEvent(params)
+      const hasErroEvent = makeRemoteError(error?.code)
 
-    if (hasErroEvent) {
-      setEventIsError(true)
-      setEventError(error?.code)
-      return
+      if (hasErroEvent) {
+        setEventIsError(true)
+        setEventError(error?.code)
+        return
+      }
+
+      if (!data) {
+        setEventIsError(true)
+        setEventError('Não foi possível cadastrar evento!')
+        return
+      }
+
+      setEvent(data)
+      setEventIsSuccess(true)
+    } catch (error: unknown) {
+      if (error instanceof TypeError) {
+        setEventIsError(true)
+        setEventError(error.message)
+      }
+    } finally {
+      setEventIsLoading(false)
     }
-
-    if (!data) {
-      setEventIsError(true)
-      setEventError('Não foi possível cadastrar evento!')
-      return
-    }
-
-    setEvent(data)
-    setEventIsSuccess(true)
-    setEventIsLoading(false)
   }
 
   return {
