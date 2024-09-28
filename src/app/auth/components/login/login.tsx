@@ -15,10 +15,6 @@ export function Login() {
     isError,
   } = useLogin()
 
-  if (isError && error) {
-    return <Alert message={error} />
-  }
-
   if (isLoading) {
     return <Loader text="Autenticando" />
   }

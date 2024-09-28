@@ -15,10 +15,6 @@ export function Register() {
     error,
   } = useRegister()
 
-  if (isError && error) {
-    return <Alert message={error} />
-  }
-
   if (isLoading) {
     return <Loader text="Carregando" />
   }

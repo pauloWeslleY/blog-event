@@ -17,7 +17,8 @@ export class RemoteAddAccount implements IAddAccount {
 
     return {
       data,
-      error: error || auth.error,
+      error: auth.error,
+      hasError: error,
     }
   }
 }

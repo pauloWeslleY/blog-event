@@ -7,16 +7,16 @@ import { FirebaseError } from 'firebase/app'
 import { IFirebaseAuth, ISignUp } from '@/infra/firebase'
 
 export class RemoteAuthSignUp implements ISignUp<UserCredential> {
-  public authResponse: ISignUp.Model<UserCredential>
+  private authResponse: ISignUp.Model<UserCredential>
 
   constructor(private readonly auth: Auth) {
     this.authResponse = { credential: null, error: null }
   }
 
-  async signUp(
-    params: IFirebaseAuth.Params,
-  ): Promise<ISignUp.Model<UserCredential>> {
-    const { email, password } = params
+  async signUp({
+    email,
+    password,
+  }: IFirebaseAuth.Params): Promise<ISignUp.Model<UserCredential>> {
     await createUserWithEmailAndPassword(this.auth, email, password)
       .then((user) => {
         this.authResponse = { credential: user, error: null }

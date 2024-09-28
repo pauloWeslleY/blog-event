@@ -20,16 +20,20 @@ export function useAuthentication() {
   } = useUserStore()
   const router = useRouter()
 
+  async function handlerAuthSignIn(params: IAuthentication.Params) {
+    const auth = makeRemoteAuthentication()
+    return await auth.authentication(params)
+  }
+
   async function handlerAuthentication(params: IAuthentication.Params) {
     setUserLoading(true)
 
     try {
-      const { authentication } = makeRemoteAuthentication()
-      const { data, error } = await authentication(params)
+      const { data, error } = await handlerAuthSignIn(params)
       const hasError = makeRemoteError(error?.code)
 
       if (hasError) {
-        setUserError(error?.message)
+        setUserError(hasError.message)
         setUserIsError(true)
         return
       }
@@ -43,6 +47,7 @@ export function useAuthentication() {
       setUserLoading(false)
       router.push('/events')
     } catch (error) {
+      console.log(error)
       setUserError('Algo de errado aconteceu')
       setUserIsError(true)
     } finally {

@@ -1,4 +1,5 @@
 import { useRouter } from 'next/navigation'
+import { FirebaseError } from 'firebase/app'
 import { IAddAccount } from '@/data/usecases'
 import { savedCookies } from '@/infra/cache/cookies'
 import {
@@ -20,18 +21,6 @@ export function useAddAccount() {
   } = useUserStore()
   const router = useRouter()
 
-  // async function handlerRegister(params: IAddAccount.Params) {
-  //   const authentication = makeRemoteDatabaseAuthSignUp()
-  //   const user = makeRemoteUserCreate()
-  //   const auth = await authentication.signUp(params)
-  //   const { data, error } = await user.create({
-  //     credential: auth.credential,
-  //     username: params.username,
-  //   })
-
-  //   return { data, error }
-  // }
-
   async function handlerAuthSignUp(params: IAddAccount.Params) {
     const auth = makeRemoteAddAccount()
     return await auth.register(params)
@@ -41,11 +30,24 @@ export function useAddAccount() {
     setUserLoading(true)
 
     try {
-      const { data, error } = await handlerAuthSignUp(params)
-      const hasError = makeRemoteError(error?.code)
+      const { data, error, hasError } = await handlerAuthSignUp(params)
+      const onError = makeRemoteError(error?.code)
 
-      if (hasError) {
-        setUserError(error?.message)
+      if (onError) {
+        setUserError(onError?.message)
+        setUserIsError(true)
+        return
+      }
+
+      if (typeof hasError === 'string') {
+        setUserError(hasError)
+        setUserIsError(true)
+        return
+      }
+
+      if (hasError instanceof FirebaseError) {
+        const onError = makeRemoteError(hasError?.code)
+        setUserError(onError?.message)
         setUserIsError(true)
         return
       }

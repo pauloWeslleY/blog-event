@@ -1,17 +1,17 @@
+import { FirebaseError } from 'firebase/app'
 import { FirebaseErrorCode } from '@/data/error'
 
 export namespace FirebaseErrors {
-  class FirebaseError extends Error {
+  class Errors extends FirebaseError {
     constructor(
       public code: FirebaseErrorCode,
-      message: string,
+      public message: string,
     ) {
-      super(message)
-      this.name = 'FirebaseError'
+      super(code, message)
     }
   }
 
-  export class UserNotFound extends FirebaseError {
+  export class UserNotFound extends Errors {
     constructor() {
       super(
         FirebaseErrorCode.USER_NOT_FOUND,
@@ -20,7 +20,7 @@ export namespace FirebaseErrors {
     }
   }
 
-  export class UnexpectedError extends FirebaseError {
+  export class UnexpectedError extends Errors {
     constructor() {
       super(
         FirebaseErrorCode.UNEXPECTED_ERROR,
@@ -29,7 +29,7 @@ export namespace FirebaseErrors {
     }
   }
 
-  export class EmailAlreadyInUse extends FirebaseError {
+  export class EmailAlreadyInUse extends Errors {
     constructor() {
       super(
         FirebaseErrorCode.EMAIL_ALREADY_IN_USE,
@@ -38,7 +38,7 @@ export namespace FirebaseErrors {
     }
   }
 
-  export class EmailAlreadyExistsError extends FirebaseError {
+  export class EmailAlreadyExistsError extends Errors {
     constructor() {
       super(
         FirebaseErrorCode.EMAIL_ALREADY_EXISTS,
@@ -47,13 +47,13 @@ export namespace FirebaseErrors {
     }
   }
 
-  export class InvalidCredentialError extends FirebaseError {
+  export class InvalidCredentialError extends Errors {
     constructor() {
       super(FirebaseErrorCode.INVALID_CREDENTIAL, 'Credenciais inválida')
     }
   }
 
-  export class InvalidEmailError extends FirebaseError {
+  export class InvalidEmailError extends Errors {
     constructor() {
       super(
         FirebaseErrorCode.INVALID_EMAIL,
@@ -62,7 +62,7 @@ export namespace FirebaseErrors {
     }
   }
 
-  export class InvalidPasswordWrongError extends FirebaseError {
+  export class InvalidPasswordWrongError extends Errors {
     constructor() {
       super(
         FirebaseErrorCode.INVALID_PASSWORD_WRONG,
@@ -71,7 +71,7 @@ export namespace FirebaseErrors {
     }
   }
 
-  export class InvalidPasswordWeakError extends FirebaseError {
+  export class InvalidPasswordWeakError extends Errors {
     constructor() {
       super(
         FirebaseErrorCode.INVALID_PASSWORD_WEAK,
@@ -80,7 +80,7 @@ export namespace FirebaseErrors {
     }
   }
 
-  export class InvalidPasswordError extends FirebaseError {
+  export class InvalidPasswordError extends Errors {
     constructor() {
       super(
         FirebaseErrorCode.INVALID_PASSWORD,
@@ -89,7 +89,7 @@ export namespace FirebaseErrors {
     }
   }
 
-  export class TooManyRequestsError extends FirebaseError {
+  export class TooManyRequestsError extends Errors {
     constructor() {
       super(
         FirebaseErrorCode.TOO_MANY_REQUESTS,

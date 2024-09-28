@@ -1,3 +1,4 @@
+'use client'
 import StartPage from './(home)/start-page/page'
 import { NavBar } from './components/layout'
 

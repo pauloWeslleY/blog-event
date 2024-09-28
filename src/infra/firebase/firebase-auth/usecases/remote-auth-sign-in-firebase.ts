@@ -9,10 +9,10 @@ export class RemoteAuthSignIn implements ISignIn<UserCredential> {
     this.authResponse = { credential: null, error: null }
   }
 
-  async signIn(
-    params: IFirebaseAuth.Params,
-  ): Promise<ISignIn.Model<UserCredential>> {
-    const { email, password } = params
+  async signIn({
+    email,
+    password,
+  }: IFirebaseAuth.Params): Promise<ISignIn.Model<UserCredential>> {
     await signInWithEmailAndPassword(this.auth, email, password)
       .then((user) => {
         this.authResponse = { credential: user, error: null }

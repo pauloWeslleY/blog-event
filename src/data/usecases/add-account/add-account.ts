@@ -1,3 +1,4 @@
+import { FirebaseError } from 'firebase/app'
 import { FirebaseResponse, ISignUp } from '@/infra/firebase'
 import { AccountModel } from '@/data/models'
 
@@ -6,7 +7,9 @@ export namespace IAddAccount {
     username: string
   }
 
-  export type Model = FirebaseResponse<AccountModel>
+  export type Model = FirebaseResponse<AccountModel> & {
+    hasError: FirebaseError | null | string
+  }
 }
 
 export interface IAddAccount {
