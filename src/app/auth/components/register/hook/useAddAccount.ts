@@ -57,11 +57,9 @@ export function useAddAccount() {
       setUser(data)
       savedCookies(data)
       router.push('/events')
-    } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        setUserError(error?.message)
-        setUserIsError(true)
-      }
+    } catch (error) {
+      setUserError('Algo de errado aconteceu')
+      setUserIsError(true)
     } finally {
       setUserLoading(false)
     }

@@ -40,11 +40,9 @@ export function useCreateEvent() {
 
       setEvent(data)
       setEventIsSuccess(true)
-    } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        setEventIsError(true)
-        setEventError(error.message)
-      }
+    } catch (error) {
+      setEventIsError(true)
+      setEventError('Algo de errado aconteceu')
     } finally {
       setEventIsLoading(false)
     }

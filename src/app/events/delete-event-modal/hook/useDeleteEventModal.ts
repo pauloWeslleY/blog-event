@@ -18,11 +18,9 @@ export function useDeleteEventModal() {
     try {
       const event = makeRemoteDeleteEvent()
       await event.deleteEvent(params)
-    } catch (error: unknown) {
-      if (error instanceof TypeError) {
-        setEventError(error.message)
-        setEventIsError(true)
-      }
+    } catch (error) {
+      setEventError('Algo de errado aconteceu')
+      setEventIsError(true)
     } finally {
       setEventIsLoading(false)
     }
