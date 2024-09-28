@@ -1,3 +1,4 @@
+'use client'
 import { useRouter } from 'next/navigation'
 import { IUpdatedViewEvent } from '@/data/usecases'
 import { useEventStore } from '@/main/store'
