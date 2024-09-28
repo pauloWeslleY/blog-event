@@ -1,3 +1,5 @@
+'use client'
+import { useRouter } from 'next/navigation'
 import { IAuthentication } from '@/data/usecases'
 import { savedCookies } from '@/infra/cache/cookies'
 import {
@@ -16,26 +18,36 @@ export function useAuthentication() {
     setUserIsError,
     setUserLoading,
   } = useUserStore()
+  const router = useRouter()
 
   async function handlerAuthentication(params: IAuthentication.Params) {
     setUserLoading(true)
-    const { authentication } = makeRemoteAuthentication()
-    const { data, error } = await authentication(params)
-    const hasError = makeRemoteError(error?.code)
 
-    if (hasError) {
-      setUserError(error?.message)
+    try {
+      const { authentication } = makeRemoteAuthentication()
+      const { data, error } = await authentication(params)
+      const hasError = makeRemoteError(error?.code)
+
+      if (hasError) {
+        setUserError(error?.message)
+        setUserIsError(true)
+        return
+      }
+
+      if (!data) {
+        return
+      }
+
+      setUser(data)
+      savedCookies(data)
+      setUserLoading(false)
+      router.push('/events')
+    } catch (error) {
+      setUserError('Algo de errado aconteceu')
       setUserIsError(true)
-      return
+    } finally {
+      setUserLoading(false)
     }
-
-    if (!data) {
-      return
-    }
-
-    setUser(data)
-    savedCookies(data)
-    setUserLoading(false)
   }
 
   return {
