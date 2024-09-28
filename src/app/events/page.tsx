@@ -1,12 +1,11 @@
-import { makeRemoteListEvent } from '@/main/factories/usecases'
 import { CreateEventModal } from './create-event-modal'
 import { EventList } from './event-list/event-list'
 import { HeaderSearchingEvent } from './header-searching-event/header-searching-event'
+import getEventUserAuth from './action/event'
 import './styles.css'
 
 export default async function Events() {
-  const response = makeRemoteListEvent()
-  const eventList = await response.getListEvent()
+  const eventList = await getEventUserAuth()
 
   return (
     <div className="events__container">

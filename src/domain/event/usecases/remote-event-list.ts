@@ -1,4 +1,4 @@
-import { getDocs, orderBy, query, where } from 'firebase/firestore'
+import { getDocs, query, where } from 'firebase/firestore'
 import { COLLECTIONS, IFirebase } from '@/infra/firebase'
 import { IEventList } from '@/data/usecases'
 import { Event } from '../entities/event'
@@ -11,11 +11,12 @@ export class RemoteEventList implements IEventList {
     this.eventList = []
   }
 
-  async getListEvent(): Promise<IEventList.Model[]> {
+  async getListEvent(params: IEventList.Params): Promise<IEventList.Model[]> {
     const queryEvent = query(
       this.database.collection(COLLECTIONS.EVENTS),
-      where('title', '!=', true),
-      orderBy('title', 'asc'),
+      typeof params.find === 'string'
+        ? where('ownerId', '==', params.find)
+        : where('title', '!=', true),
     )
 
     const listEvent = await getDocs(queryEvent)

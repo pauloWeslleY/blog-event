@@ -1,9 +1,13 @@
 import { EventModel } from '@/data/models'
 
 export namespace IEventList {
+  export type Params = {
+    find: boolean | string
+  }
+
   export type Model = EventModel
 }
 
 export interface IEventList {
-  getListEvent(): Promise<IEventList.Model[]>
+  getListEvent(params: IEventList.Params): Promise<IEventList.Model[]>
 }

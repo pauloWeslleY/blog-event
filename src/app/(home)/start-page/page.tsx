@@ -4,7 +4,7 @@ import './styles.css'
 
 async function StartPage() {
   const response = makeRemoteListEvent()
-  const eventList = await response.getListEvent()
+  const eventList = await response.getListEvent({ find: false })
 
   return (
     <section className="home-event__container">
