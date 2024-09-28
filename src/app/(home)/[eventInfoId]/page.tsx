@@ -1,109 +1,102 @@
-'use client'
 import Image from 'next/image'
-import dayjs from 'dayjs'
 import { NavBar } from '@/app/components/layout'
-import { useDetailsEvent } from '@/app/hook'
-import './styles.css'
-import { Loader } from '@/app/components/ui'
-import { useEventInfo } from './hook'
+import {
+  makeRemoteEventDetail,
+  makeRemoteUserOwner,
+} from '@/main/factories/usecases'
 import { EventInfoDetailContent } from './components'
+import { EventType } from './components/event-type/event-type'
+import './styles.css'
 
 interface EventInfoParams {
   params: { eventInfoId: string }
 }
 
-function EventInfo({ params: { eventInfoId } }: EventInfoParams) {
-  const {
-    loadDetailsEvent: { data, isLoading },
-  } = useDetailsEvent({ params: { eventId: eventInfoId } })
-
-  const { loadEventType, loadOwnerInfo } = useEventInfo(data)
+export default async function EventInfo({
+  params: { eventInfoId },
+}: EventInfoParams) {
+  const detailsEvent = makeRemoteEventDetail()
+  const user = makeRemoteUserOwner()
+  const event = await detailsEvent.getDetailEvent({ eventId: eventInfoId })
+  const userOwner = await user.getUserOwner(event.ownerId)
 
   return (
     <div className="wrapper">
       <NavBar />
 
-      {isLoading && (
+      {/* {isLoading && (
         <div className="loader-content">
           <Loader text="Carregando Informações do evento" />
         </div>
-      )}
+      )} */}
 
-      {!isLoading && (
-        <div className="event-info__container">
-          <div className="event-info__wrapper">
-            <main className="event-info__content">
-              {data && (
-                <div className="event-info__banner">
-                  <Image
-                    src={data.photoUrl}
-                    alt={data.title}
-                    width={634}
-                    height={300}
-                  />
+      <div className="event-info__container">
+        <div className="event-info__wrapper">
+          <main className="event-info__content">
+            {event && (
+              <div className="event-info__banner">
+                <Image
+                  src={event.photoUrl}
+                  alt={event.title}
+                  width={634}
+                  height={300}
+                />
+              </div>
+            )}
+
+            {event && (
+              <div className="event-info__wrapper-information">
+                <div className="event-info__wrapper-information-content">
+                  <span>Nome do evento:</span> <h3>{event.title}</h3>
                 </div>
-              )}
-
-              {data && (
-                <div className="event-info__wrapper-information">
-                  <div className="event-info__wrapper-information-content">
-                    <span>Nome do evento:</span> <h3>{data.title}</h3>
-                  </div>
-                  <div className="event-info__wrapper-information-content">
-                    <span>Descrição do evento:</span>{' '}
-                    <h3>{data.description}</h3>
-                  </div>
-                  <div className="event-info__wrapper-information-content">
-                    <span>Organizador do evento:</span>{' '}
-                    <h3>{loadOwnerInfo?.username.toUpperCase()}</h3>
-                  </div>
+                <div className="event-info__wrapper-information-content">
+                  <span>Descrição do evento:</span> <h3>{event.description}</h3>
                 </div>
-              )}
-            </main>
-
-            <aside className="event-info__details">
-              {data && (
-                <div className="event-info__details-wrapper">
-                  <div className="event-info__details-header">
-                    <h1 className="event-info__details-title">
-                      Informações do Evento
-                    </h1>
-
-                    <div className="event-info__separator" />
-                  </div>
-
-                  <EventInfoDetailContent
-                    title="Dia do evento"
-                    description={dayjs(data.date).format('DD/MM/YYYY')}
-                  />
-
-                  <EventInfoDetailContent
-                    title="Tipo do evento"
-                    description={loadEventType?.label || ''}
-                  />
-
-                  <EventInfoDetailContent
-                    title="Hora do evento"
-                    description={data.hours.concat(':00h')}
-                  />
-
-                  <EventInfoDetailContent
-                    title="Evento"
-                    description={data.public ? 'Público' : 'Privado'}
-                  />
-
-                  <EventInfoDetailContent
-                    title="Visualizações do evento"
-                    description={data.views.toString()}
-                  />
+                <div className="event-info__wrapper-information-content">
+                  <span>Organizador do evento:</span>{' '}
+                  <h3>{userOwner?.username.toUpperCase()}</h3>
                 </div>
-              )}
-            </aside>
-          </div>
+              </div>
+            )}
+          </main>
+
+          <aside className="event-info__details">
+            {event && (
+              <div className="event-info__details-wrapper">
+                <div className="event-info__details-header">
+                  <h1 className="event-info__details-title">
+                    Informações do Evento
+                  </h1>
+
+                  <div className="event-info__separator" />
+                </div>
+
+                <EventInfoDetailContent
+                  title="Dia do evento"
+                  description={event.date}
+                />
+
+                <EventType eventType={event.type} />
+
+                <EventInfoDetailContent
+                  title="Hora do evento"
+                  description={event.hours.concat(':00h')}
+                />
+
+                <EventInfoDetailContent
+                  title="Evento"
+                  description={event.public ? 'Público' : 'Privado'}
+                />
+
+                <EventInfoDetailContent
+                  title="Visualizações do evento"
+                  description={event.views.toString()}
+                />
+              </div>
+            )}
+          </aside>
         </div>
-      )}
+      </div>
     </div>
   )
 }
-
-export default EventInfo

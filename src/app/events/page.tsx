@@ -1,20 +1,12 @@
-'use client'
-import { Search } from 'lucide-react'
-import { Input, Loader } from '@/app/components/ui'
-import { useLoaderStore, useSearchStore } from '@/main/store'
+import { makeRemoteListEvent } from '@/main/factories/usecases'
 import { CreateEventModal } from './create-event-modal'
-import { useEventList, useSearchingEvent } from './hook'
-import { EventCard } from './event-card'
+import { EventList } from './event-list/event-list'
+import { HeaderSearchingEvent } from './header-searching-event/header-searching-event'
 import './styles.css'
 
-function Events() {
-  const {
-    loadEventList: { data, isLoading },
-  } = useEventList()
-
-  const { search } = useSearchStore()
-  const { loader } = useLoaderStore()
-  const { loadSearchEvent, onChangeSearch } = useSearchingEvent(data)
+export default async function Events() {
+  const response = makeRemoteListEvent()
+  const eventList = await response.getListEvent()
 
   return (
     <div className="events__container">
@@ -22,42 +14,19 @@ function Events() {
         <h1 className="title">Meus Eventos</h1>
 
         <div className="events__header-action">
-          <Input
-            icon={Search}
-            placeholder="Pesquisa por eventos"
-            className="events__input-search"
-            value={search}
-            onChange={onChangeSearch}
-          />
+          <HeaderSearchingEvent />
 
           <CreateEventModal />
         </div>
       </header>
 
-      {isLoading && (
-        <div className="events__loader-container">
-          <Loader text="Carregando" />
-        </div>
-      )}
-
-      {!isLoading && (
-        <div className="events__wrapper">
-          {data && data.length === 0 ? (
-            <p>Não há eventos cadastrado!</p>
-          ) : (
-            <>
-              {loader && <Loader />}
-
-              {!loader &&
-                loadSearchEvent?.map((event) => (
-                  <EventCard key={event.id} event={event} />
-                ))}
-            </>
-          )}
-        </div>
-      )}
+      <div className="events__wrapper">
+        {eventList.length < 0 ? (
+          <p>Não há eventos cadastrado!</p>
+        ) : (
+          <EventList eventList={eventList} />
+        )}
+      </div>
     </div>
   )
 }
-
-export default Events

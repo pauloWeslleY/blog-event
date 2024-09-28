@@ -1,7 +1,7 @@
-import { RemoteListEvents } from '@/core/usecases'
-import { IEventList } from '@/data/firebase'
-import { makeAxiosHttpClient } from '@/main/factories/http'
+import { IEventList } from '@/data/usecases'
+import { RemoteEventList } from '@/domain/event'
+import { makeRemoteDatabase } from '@/main/factories/firebase-database'
 
-export function makeRemoteListEvents(url: string): IEventList {
-  return new RemoteListEvents(url, makeAxiosHttpClient())
+export function makeRemoteListEvent(): IEventList {
+  return new RemoteEventList(makeRemoteDatabase())
 }

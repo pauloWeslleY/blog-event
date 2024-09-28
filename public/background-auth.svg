@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="1440" height="768" preserveAspectRatio="none" viewBox="0 0 1440 768"><g mask="url(&quot;#SvgjsMask1053&quot;)" fill="none"><rect width="1440" height="768" x="0" y="0" fill="rgba(91, 33, 182, 1)"></rect><path d="M1488.241,675.79C1564.329,676.178,1649.443,666.943,1687.723,601.184C1726.153,535.166,1694.283,455.241,1654.638,389.945C1616.889,327.773,1560.94,274.939,1488.241,272.638C1411.858,270.22,1341.869,313.275,1302.54,378.799C1261.979,446.376,1250.47,532.339,1292.255,599.166C1332.113,662.911,1413.062,675.406,1488.241,675.79" fill="rgba(63, 45, 115, 0.87)" class="triangle-float1"></path><path d="M558.38,520.453C606.35,517.014,646.293,488.704,671.782,447.921C699.235,403.994,716.627,350.801,693.323,304.539C667.965,254.2,614.737,221.833,558.38,222.801C503.5,223.743,459.378,261.917,431.232,309.039C402.191,357.659,383.637,417.953,412.825,466.485C441.409,514.013,503.061,524.419,558.38,520.453" fill="rgba(63, 45, 115, 0.87)" class="triangle-float1"></path><path d="M582.75 102.91 a200.06 200.06 0 1 0 400.12 0 a200.06 200.06 0 1 0 -400.12 0z" fill="rgba(63, 45, 115, 0.87)" class="triangle-float3"></path><path d="M99.177,947.773C154.568,947.726,187.986,892.996,214.884,844.574C240.718,798.069,264.866,743.539,238.201,697.505C211.578,651.543,152.293,644.886,99.177,644.818C45.901,644.75,-13.719,651.072,-40.461,697.15C-67.27,743.343,-42.865,798.114,-16.87,844.77C10.112,893.197,43.741,947.82,99.177,947.773" fill="rgba(63, 45, 115, 0.87)" class="triangle-float1"></path><path d="M509.602,251.547C533,252.497,552.201,235.445,564.262,215.373C576.771,194.557,584.828,168.406,571.926,147.832C559.524,128.056,532.868,126.317,509.602,128.212C490.053,129.804,472.425,139.703,462.688,156.729C453.022,173.63,453.493,193.773,462.127,211.224C471.995,231.169,487.367,250.644,509.602,251.547" fill="rgba(63, 45, 115, 0.87)" class="triangle-float2"></path><path d="M1224.54 175.39 a213.42 213.42 0 1 0 426.84 0 a213.42 213.42 0 1 0 -426.84 0z" fill="rgba(63, 45, 115, 0.87)" class="triangle-float3"></path><path d="M1149.65 679.23 a157.56 157.56 0 1 0 315.12 0 a157.56 157.56 0 1 0 -315.12 0z" fill="rgba(63, 45, 115, 0.87)" class="triangle-float1"></path></g><defs><mask id="SvgjsMask1053"><rect width="1440" height="768" fill="#ffffff"></rect></mask><style>
+                @keyframes float1 {
+                    0%{transform: translate(0, 0)}
+                    50%{transform: translate(-10px, 0)}
+                    100%{transform: translate(0, 0)}
+                }
+
+                .triangle-float1 {
+                    animation: float1 5s infinite;
+                }
+
+                @keyframes float2 {
+                    0%{transform: translate(0, 0)}
+                    50%{transform: translate(-5px, -5px)}
+                    100%{transform: translate(0, 0)}
+                }
+
+                .triangle-float2 {
+                    animation: float2 4s infinite;
+                }
+
+                @keyframes float3 {
+                    0%{transform: translate(0, 0)}
+                    50%{transform: translate(0, -10px)}
+                    100%{transform: translate(0, 0)}
+                }
+
+                .triangle-float3 {
+                    animation: float3 6s infinite;
+                }
+            </style></defs></svg>

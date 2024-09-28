@@ -1,9 +1,8 @@
 'use client'
 import { Button } from '@radix-ui/themes'
 import { LockKeyhole, Mail } from 'lucide-react'
-import { Alert, FormError, Input, Loader } from '@/app/components/ui'
-
-import { useLogin } from './hook'
+import { Alert, Input, Loader } from '@/app/components/ui'
+import { useLogin } from './hook/useLogin'
 
 export function Login() {
   const {
@@ -12,16 +11,15 @@ export function Login() {
     register,
     errors,
     error,
-    data,
-    isPending,
+    isLoading,
     isError,
   } = useLogin()
 
   if (isError && error) {
-    return <Alert message={error?.message} />
+    return <Alert message={error} />
   }
 
-  if (isPending) {
+  if (isLoading) {
     return <Loader text="Autenticando" />
   }
 
@@ -47,7 +45,7 @@ export function Login() {
         helperText={errors.password?.message}
       />
 
-      <FormError error={data} />
+      {isError && error && <Alert message={error} />}
 
       <Button type="submit" size="3">
         Entrar

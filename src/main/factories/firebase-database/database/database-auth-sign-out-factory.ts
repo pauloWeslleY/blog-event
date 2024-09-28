@@ -1,4 +1,4 @@
-import { DBFirebase, ISignOut } from '@/data/firebase'
+import { DBFirebase, ISignOut } from '@/infra/firebase'
 import { makeRemoteDatabase } from './index'
 
 export const makeRemoteDatabaseAuthSignOut = (): ISignOut => {

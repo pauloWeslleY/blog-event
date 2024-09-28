@@ -1,21 +1,18 @@
-'use client'
-import { useEventList } from '@/app/events/hook'
-import { Loader } from '@/app/components/ui'
+import { makeRemoteListEvent } from '@/main/factories/usecases'
 import { PostEvent } from './components'
 import './styles.css'
 
-function StartPage() {
-  const {
-    loadEventList: { data, isLoading },
-  } = useEventList()
+async function StartPage() {
+  const response = makeRemoteListEvent()
+  const eventList = await response.getListEvent()
 
-  if (isLoading) {
-    return (
-      <div className="loader-content">
-        <Loader text="Carregando lista de eventos" />
-      </div>
-    )
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="loader-content">
+  //       <Loader text="Carregando lista de eventos" />
+  //     </div>
+  //   )
+  // }
 
   return (
     <section className="home-event__container">
@@ -26,8 +23,10 @@ function StartPage() {
       <div className="home-event__content">
         <main className="home-event__list">
           <div className="home-event__list-container">
-            {data &&
-              data.map((event) => <PostEvent key={event.id} event={event} />)}
+            {eventList.length > 0 &&
+              eventList.map((event) => (
+                <PostEvent key={event.id} event={event} />
+              ))}
           </div>
         </main>
 
@@ -39,8 +38,8 @@ function StartPage() {
           </div>
 
           <ul className="home-event__list-info-public">
-            {data &&
-              data
+            {eventList.length > 0 &&
+              eventList
                 .filter((props) => props.public === true)
                 .map((event) => (
                   <li

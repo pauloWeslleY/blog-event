@@ -1,9 +1,9 @@
 import { Avatar, Button, DropdownMenu } from '@radix-ui/themes'
 import { MenuOptionsProps } from '@/app/components/layout/navbar/types'
-import { useUserAuthStore } from '@/main/store'
+import { useUserStore } from '@/main/store'
 
 export function MenuProfile({ options }: { options: MenuOptionsProps[] }) {
-  const { userAuth } = useUserAuthStore()
+  const { user } = useUserStore()
 
   return (
     <DropdownMenu.Root>
@@ -16,7 +16,7 @@ export function MenuProfile({ options }: { options: MenuOptionsProps[] }) {
             radius="full"
           />
 
-          {userAuth?.username}
+          {user?.username}
 
           <DropdownMenu.TriggerIcon />
         </Button>

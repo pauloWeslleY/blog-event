@@ -1,12 +1,12 @@
 import { AlertDialog, Button, Flex } from '@radix-ui/themes'
-import { useDeleteEventModal } from './hook'
+import { useDeleteEventModal } from './hook/useDeleteEventModal'
 
 interface DeleteEventModalProps {
   eventId: string
 }
 
 export function DeleteEventModal({ eventId }: DeleteEventModalProps) {
-  const { handleDeleteEvent, isPending } = useDeleteEventModal()
+  const { handlerDeleteEvent, isLoading } = useDeleteEventModal()
 
   return (
     <AlertDialog.Root>
@@ -29,8 +29,8 @@ export function DeleteEventModal({ eventId }: DeleteEventModalProps) {
             <Button
               variant="solid"
               color="red"
-              onClick={() => handleDeleteEvent(eventId)}
-              loading={isPending}
+              onClick={() => handlerDeleteEvent({ eventId })}
+              loading={isLoading}
             >
               Excluir
             </Button>

@@ -1,1 +1,1 @@
-export * from './formatted'
+export * from './formatted/formatted-factory'

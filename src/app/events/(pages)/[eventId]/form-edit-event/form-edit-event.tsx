@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import { Button, Callout, Progress } from '@radix-ui/themes'
 import { CircleCheck } from 'lucide-react'
@@ -5,14 +6,14 @@ import { Controller } from 'react-hook-form'
 import { HelperText, Input, Loader, Select, Switch } from '@/app/components/ui'
 import { useSelectEvent } from '@/app/events/hook'
 import { useUploadProgressStore } from '@/main/store'
-import { useFormEditEvent } from './hook'
+import { useFormEditEvent } from './hook/useFormEditEvent'
 import './styles.css'
 
 export function FormEditEvent() {
   const {
-    data,
+    event,
     isSuccess,
-    isPending,
+    isLoading,
     errors,
     control,
     register,
@@ -26,11 +27,11 @@ export function FormEditEvent() {
   return (
     <div className="form-edit-event__wrapper">
       <div className="form-edit-event__banner">
-        {isPending && <Loader />}
+        {isLoading && <Loader />}
 
-        {!isPending && (
+        {!isLoading && (
           <Image
-            src={data?.photoUrl || ''}
+            src={event?.photoUrl || ''}
             alt="Banner"
             width={1300}
             height={300}
@@ -102,9 +103,9 @@ export function FormEditEvent() {
                 <Select
                   value={value}
                   onValueChange={onChange}
-                  defaultValue={data?.type}
+                  defaultValue={event?.type}
                   placeholder="Selecione o tipo de evento"
-                  options={loadSelectTypeEvent()}
+                  options={loadSelectTypeEvent}
                 />
                 <HelperText
                   error={!!errors.typeEvent?.message}
@@ -139,7 +140,7 @@ export function FormEditEvent() {
         />
 
         <div className="form-edit-event__footer">
-          <Button type="submit" size="3" loading={isPending}>
+          <Button type="submit" size="3" loading={isLoading}>
             Atualizar
           </Button>
         </div>

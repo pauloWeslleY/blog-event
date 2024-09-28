@@ -1,4 +1,4 @@
-import { IAuthToken, RemoteAuthToken } from '@/data/firebase'
+import { IAuthToken, RemoteAuthToken } from '@/infra/firebase'
 import { makeRemoteDatabase } from './index'
 
 export const makeRemoteDatabaseAuthToken = (): IAuthToken => {

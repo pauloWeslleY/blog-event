@@ -1,2 +1,2 @@
-export * from './remote-user-details-factory'
-export * from './remote-user-list-factory'
+export * from './remote-user-create-factory'
+export * from './remote-user-owner-factory'

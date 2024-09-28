@@ -1,3 +1,2 @@
-export * from './upload'
+export * from './upload/remote-firebase-upload-factory'
 export * from './database'
-export * from './firestore'

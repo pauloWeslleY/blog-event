@@ -1,6 +1,0 @@
-export * from './remote-event-list-factory'
-export * from './remote-event-info-factory'
-export * from './remote-edit-event-factory'
-export * from './remote-create-event-factory'
-export * from './remote-delete-event-factory'
-export * from './remote-updated-view-event-factory'

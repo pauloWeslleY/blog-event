@@ -1,13 +1,12 @@
 'use client'
 import Link from 'next/link'
 import { Tabs } from '@radix-ui/themes'
-import { useLoaderStore } from '@/main/store'
-import { useMenuAuth } from './hook'
+import { useUserStore } from '@/main/store'
+import { useMenuAuth } from './hook/'
 import './styles.css'
 
 export default function Auth() {
-  const { loader } = useLoaderStore()
-
+  const { isLoading } = useUserStore()
   const { loadMenuAuth } = useMenuAuth()
 
   return (
@@ -26,16 +25,15 @@ export default function Auth() {
             <Tabs.Content key={value} value={value}>
               <Component />
 
-              {!loader && (
+              {!isLoading && (
                 <div className="tabs-actions">
                   <Link href="/">Voltar</Link>
 
                   {value !== 'register' && (
-                    <div className="tabs-actions--separator" />
-                  )}
-
-                  {value !== 'register' && (
-                    <Link href="#">Esqueci minha senha</Link>
+                    <>
+                      <div className="tabs-actions--separator" />
+                      <Link href="#">Esqueci minha senha</Link>
+                    </>
                   )}
                 </div>
               )}

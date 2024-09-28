@@ -1,7 +1,7 @@
-import { RemoteAuthentication } from '@/core/usecases'
-import { IAuthentication } from '@/domain/interfaces'
-import { makeAxiosHttpClient } from '@/main/factories/http'
+import { IAuthentication } from '@/data/usecases'
+import { RemoteAuthentication } from '@/domain/authentication'
+import { makeRemoteDatabaseAuthSignIn } from '@/main/factories/firebase-database'
 
-export function makeRemoteAuthentication(url: string): IAuthentication {
-  return new RemoteAuthentication(url, makeAxiosHttpClient())
+export function makeRemoteAuthentication(): IAuthentication {
+  return new RemoteAuthentication({ auth: makeRemoteDatabaseAuthSignIn() })
 }

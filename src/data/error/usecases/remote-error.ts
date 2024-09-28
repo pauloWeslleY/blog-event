@@ -1,31 +1,31 @@
-import { FirebaseErrors, IError } from '@/data/error'
-import { Errors } from '@/domain/errors'
+import { FirebaseError } from 'firebase/app'
+import { FirebaseErrorCode, FirebaseErrors } from '@/data/error'
+
+export interface IError {
+  getError(params: string | undefined): FirebaseError | null
+}
 
 export class RemoteError implements IError {
-  private userNotFound = new FirebaseErrors.UserNotFound()
-  private wrongPassword = new FirebaseErrors.InvalidPasswordWrongError()
-  private weakPassword = new FirebaseErrors.InvalidPasswordWeakError()
-  private emailAlreadyInUse = new FirebaseErrors.EmailAlreadyInUse()
-  private toManyRequests = new FirebaseErrors.TooManyRequestsError()
-  private unexpectedError = new Errors.UnexpectedError()
+  getError(params: string | undefined): FirebaseError | null {
+    if (!params) {
+      return null
+    }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  isVerifyErrorMessage(params: any): string {
     switch (params) {
-      case this.userNotFound.message:
-        return this.userNotFound.message
-      case this.emailAlreadyInUse.message:
-        return this.emailAlreadyInUse.message
-      case this.wrongPassword.message:
-        return this.wrongPassword.message
-      case this.weakPassword.message:
-        return this.weakPassword.message
-      case this.toManyRequests.message:
-        return this.toManyRequests.message
-      case 'Algo de errado aconteceu. Tente novamente em breve':
-        return this.unexpectedError.message
+      case FirebaseErrorCode.USER_NOT_FOUND:
+        return new FirebaseErrors.UserNotFound()
+      case FirebaseErrorCode.INVALID_CREDENTIAL:
+        return new FirebaseErrors.InvalidCredentialError()
+      case FirebaseErrorCode.EMAIL_ALREADY_IN_USE:
+        return new FirebaseErrors.EmailAlreadyInUse()
+      case FirebaseErrorCode.INVALID_PASSWORD_WRONG:
+        return new FirebaseErrors.InvalidPasswordWrongError()
+      case FirebaseErrorCode.INVALID_PASSWORD_WEAK:
+        return new FirebaseErrors.InvalidPasswordWeakError()
+      case FirebaseErrorCode.TOO_MANY_REQUESTS:
+        return new FirebaseErrors.TooManyRequestsError()
       default:
-        return ''
+        return new FirebaseErrors.UnexpectedError()
     }
   }
 }

@@ -3,24 +3,21 @@ import { Controller } from 'react-hook-form'
 import { CircleCheckBig } from 'lucide-react'
 import { Button, Callout, Progress } from '@radix-ui/themes'
 import { HelperText, Input, Select } from '@/app/components/ui'
-import { useSelectEvent } from '@/app/events/hook'
-import { useUploadProgressStore } from '@/main/store'
-import { useFormCreateEvent } from './hook'
+import { useFormCreateEvent } from './hook/useFormCreateEvent'
 import './styles.css'
 
 export function FormCreateEvent() {
   const {
+    progress,
     isSuccess,
-    isPending,
+    isLoading,
     errors,
     control,
     register,
     handleSubmit,
     handleCreateEvent,
+    loadSelectTypeEvent,
   } = useFormCreateEvent()
-
-  const { loadSelectTypeEvent } = useSelectEvent()
-  const { progress } = useUploadProgressStore()
 
   if (isSuccess) {
     return (
@@ -93,7 +90,7 @@ export function FormCreateEvent() {
               value={value}
               onValueChange={onChange}
               placeholder="Selecione o tipo de evento"
-              options={loadSelectTypeEvent()}
+              options={loadSelectTypeEvent}
             />
             <HelperText
               error={!!errors.typeEvent?.message}
@@ -103,7 +100,7 @@ export function FormCreateEvent() {
         )}
       />
 
-      <Button type="submit" variant="solid" size="4" loading={isPending}>
+      <Button type="submit" variant="solid" size="4" loading={isLoading}>
         Cadastrar
       </Button>
     </form>

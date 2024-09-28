@@ -1,7 +1,7 @@
-@import '@radix-ui/colors/black-alpha.css';
-@import '@radix-ui/colors/green.css';
-@import '@radix-ui/colors/mauve.css';
-@import '@radix-ui/colors/violet.css';
+@import "@radix-ui/colors/black-alpha.css";
+@import "@radix-ui/colors/green.css";
+@import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/violet.css";
 
 /* reset */
 button,
@@ -13,11 +13,16 @@ input {
 .auth-wrapper {
   display: grid;
   grid-template-columns: 1150px 3fr;
-  grid-template-areas: 'banner form';
+  grid-template-areas: "banner form";
   grid-template-rows: 1fr;
   min-height: 100vh;
   width: 100%;
-  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.8), rgba(109, 40, 217, 0.5)), url('../../../public/banner.svg');
+  background-image: linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.8),
+      rgba(109, 40, 217, 0.5)
+    ),
+    url("../../../public/background-auth.svg");
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -41,7 +46,7 @@ input {
   border-radius: 1em;
 }
 
-.auth-wrapper .tabs-root>.rt-TabsRoot .rt-TabsList {
+.auth-wrapper .tabs-root > .rt-TabsRoot .rt-TabsList {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -50,24 +55,44 @@ input {
   border-top-right-radius: 1em;
 }
 
-.auth-wrapper .tabs-root>.rt-TabsRoot .rt-TabsList>button.rt-TabsTrigger {
+.auth-wrapper .tabs-root > .rt-TabsRoot .rt-TabsList > button.rt-TabsTrigger {
   cursor: pointer;
   flex: 1;
 }
 
-.auth-wrapper .tabs-root>.rt-TabsRoot .rt-TabsList>button.rt-TabsTrigger .rt-TabsTriggerInner {
+.auth-wrapper
+  .tabs-root
+  > .rt-TabsRoot
+  .rt-TabsList
+  > button.rt-TabsTrigger
+  .rt-TabsTriggerInner {
   font-family: var(--font-montserrat);
   font-size: 1.2em;
   color: var(--zinc-100);
   background-color: transparent;
 }
 
-.auth-wrapper .tabs-root>.rt-TabsRoot .rt-TabsList button.rt-TabsTrigger.rt-BaseTabListTrigger:where([data-state='active'], [data-active]) {
+.auth-wrapper
+  .tabs-root
+  > .rt-TabsRoot
+  .rt-TabsList
+  button.rt-TabsTrigger.rt-BaseTabListTrigger:where(
+    [data-state="active"],
+    [data-active]
+  ) {
   flex: 1;
   background: var(--violet-6);
 }
 
-.auth-wrapper .tabs-root>.rt-TabsRoot .rt-TabsList button.rt-TabsTrigger.rt-BaseTabListTrigger:where([data-state='active'], [data-active]) .rt-TabsTriggerInner {
+.auth-wrapper
+  .tabs-root
+  > .rt-TabsRoot
+  .rt-TabsList
+  button.rt-TabsTrigger.rt-BaseTabListTrigger:where(
+    [data-state="active"],
+    [data-active]
+  )
+  .rt-TabsTriggerInner {
   color: var(--violet-11);
   font-weight: 600;
 }
@@ -90,7 +115,7 @@ input {
   gap: 0.8em;
 }
 
-.auth-wrapper .tabs-content form>.rt-Button {
+.auth-wrapper .tabs-content form > .rt-Button {
   width: 100%;
   text-transform: uppercase;
   letter-spacing: 1.2px;

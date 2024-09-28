@@ -1,5 +1,9 @@
-import { IError, RemoteError } from '@/data/error'
+import { FirebaseError } from 'firebase/app'
+import { RemoteError } from '@/data/error'
 
-export const makeRemoteError = (): IError => {
-  return new RemoteError()
+export function makeRemoteError(
+  params: string | undefined,
+): FirebaseError | null {
+  const error = new RemoteError()
+  return error.getError(params)
 }

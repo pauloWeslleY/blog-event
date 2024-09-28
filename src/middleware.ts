@@ -6,8 +6,6 @@ export default function middleware(request: NextRequest) {
   const signInURL = new URL('/', request.url)
   const eventsURL = new URL('/events', request.url)
 
-  console.log(request.nextUrl.pathname)
-
   if (!token) {
     if (request.nextUrl.pathname === '/') {
       return NextResponse.next()

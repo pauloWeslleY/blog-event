@@ -1,12 +1,11 @@
-import { RemoteAdd } from '@/core/utilities'
-import { IAddAccount } from '@/domain/interfaces'
-import { makeAxiosHttpClient } from '@/main/factories/http'
+import { IAddAccount } from '@/data/usecases'
+import { RemoteAddAccount } from '@/domain/add-account'
+import { makeRemoteDatabaseAuthSignUp } from '@/main/factories/firebase-database'
+import { makeRemoteUserCreate } from '@/main/factories/usecases'
 
-type RemoteAddAccountType = IAdd<IAddAccount.Params, IAddAccount.Model>
-
-export function makeRemoteAddAccount(url: string): RemoteAddAccountType {
-  return new RemoteAdd<IAddAccount.Params, IAddAccount.Model>(
-    url,
-    makeAxiosHttpClient(),
+export function makeRemoteAddAccount(): IAddAccount {
+  return new RemoteAddAccount(
+    makeRemoteDatabaseAuthSignUp(),
+    makeRemoteUserCreate(),
   )
 }

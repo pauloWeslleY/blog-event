@@ -9,11 +9,11 @@
 }
 
 ::-webkit-scrollbar {
-  width: 0.85em;
+  width: 0.35em;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--zinc-100);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {

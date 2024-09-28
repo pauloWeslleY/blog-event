@@ -1,14 +1,7 @@
-import { RemoteUpdate } from '@/core/utilities'
-import { IEventUpdatedView } from '@/domain/interfaces'
-import { makeAxiosHttpClient } from '@/main/factories/http'
+import { IUpdatedViewEvent } from '@/data/usecases'
+import { RemoteUpdatedViewEvent } from '@/domain/event'
+import { makeRemoteDatabase } from '@/main/factories/firebase-database'
 
-type RemoteEventViewUpdatedType = IUpdated<IEventUpdatedView.Params, void>
-
-export function makeRemoteEventViewUpdated(
-  url: string,
-): RemoteEventViewUpdatedType {
-  return new RemoteUpdate<IEventUpdatedView.Params, void>(
-    url,
-    makeAxiosHttpClient(),
-  )
+export function makeRemoteUpdatedViewEvent(): IUpdatedViewEvent {
+  return new RemoteUpdatedViewEvent(makeRemoteDatabase())
 }

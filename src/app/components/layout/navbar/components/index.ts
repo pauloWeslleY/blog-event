@@ -1,1 +1,1 @@
-export * from './menu-profile'
+export * from './menu-profile/menu-profile'

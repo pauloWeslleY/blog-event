@@ -1,1 +1,1 @@
-export * from './post-event'
+export * from './post-event/post-event'

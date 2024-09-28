@@ -1,8 +1,8 @@
 'use client'
 import { Button } from '@radix-ui/themes'
 import { LockKeyhole, Mail, User } from 'lucide-react'
-import { Alert, FormError, Input, Loader } from '@/app/components/ui'
-import { useRegister } from './hook'
+import { Alert, Input, Loader } from '@/app/components/ui'
+import { useRegister } from './hook/useRegister'
 
 export function Register() {
   const {
@@ -11,16 +11,15 @@ export function Register() {
     register,
     errors,
     isError,
-    isPending,
+    isLoading,
     error,
-    data,
   } = useRegister()
 
   if (isError && error) {
-    return <Alert message={error?.message} />
+    return <Alert message={error} />
   }
 
-  if (isPending) {
+  if (isLoading) {
     return <Loader text="Carregando" />
   }
 
@@ -56,7 +55,7 @@ export function Register() {
         helperText={errors.password?.message}
       />
 
-      <FormError error={data} />
+      {isError && error && <Alert message={error} />}
 
       <Button type="submit" size="3">
         Cadastrar

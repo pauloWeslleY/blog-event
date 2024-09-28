@@ -29,20 +29,27 @@
 .post-event__container .post-event__content .post-event__body {
   display: flex;
   flex-direction: column;
-  gap: 0.010em;
+  gap: 0.01em;
 }
 
-.post-event__container .post-event__content .post-event__body .post-event__title {
+.post-event__container
+  .post-event__content
+  .post-event__body
+  .post-event__title {
   font-size: 1.4em;
   font-weight: 500;
 }
 
-.post-event__container .post-event__content .post-event__body .post-event__description {
+.post-event__container .post-event__content .post-event__body {
   font-size: 0.94em;
   font-weight: 400;
 }
 
-.post-event__container .post-event__content .post-event__body .post-event__date-hour {
+.post-event__views,
+.post-event__container
+  .post-event__content
+  .post-event__body
+  .post-event__date-hour {
   display: inline-block;
   font-size: 0.85em;
   color: var(--violet-6);

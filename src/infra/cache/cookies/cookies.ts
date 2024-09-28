@@ -1,6 +1,6 @@
 'use server'
 import { cookies } from 'next/headers'
-import { AccountModel } from '@/domain/models'
+import { AccountModel } from '@/data/models'
 
 export async function savedCookies(data: AccountModel) {
   cookies().set('uid', data.id)

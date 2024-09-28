@@ -1,9 +1,7 @@
 'use client'
 import { Avatar, Button } from '@radix-ui/themes'
 import { useRouter } from 'next/navigation'
-import { Timestamp } from 'firebase/firestore'
-import { EventModel } from '@/domain/models'
-import { useFormatted } from '@/app/hook'
+import { EventModel } from '@/data/models'
 import { DeleteEventModal } from '@/app/events/delete-event-modal'
 import './styles.css'
 
@@ -13,7 +11,6 @@ interface EventCardProps {
 
 export function EventCard({ event }: EventCardProps) {
   const { id, title, description, photoUrl, createdAt } = event
-  const { formatted } = useFormatted()
   const router = useRouter()
 
   return (
@@ -32,12 +29,7 @@ export function EventCard({ event }: EventCardProps) {
             <div className="event-card__description">
               <p>{description}</p>
               {' - '}
-              <span>
-                {formatted.formatDateHour({
-                  date: createdAt as Timestamp,
-                  hours: true,
-                })}
-              </span>
+              <span>{createdAt}</span>
             </div>
           </div>
         </div>

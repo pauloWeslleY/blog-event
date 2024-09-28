@@ -1,9 +1,7 @@
-import { RemoteDelete } from '@/core/utilities'
-import { IRemoveEvent } from '@/domain/interfaces'
-import { makeAxiosHttpClient } from '@/main/factories/http'
+import { IDeleteEvent } from '@/data/usecases'
+import { RemoteDeleteEvent } from '@/domain/event'
+import { makeRemoteDatabase } from '@/main/factories/firebase-database'
 
-type RemoteRemoveEvent = IRemove<IRemoveEvent.Params, void>
-
-export function makeRemoteRemoveEvent(url: string): RemoteRemoveEvent {
-  return new RemoteDelete<IRemoveEvent.Params, void>(url, makeAxiosHttpClient())
+export function makeRemoteDeleteEvent(): IDeleteEvent {
+  return new RemoteDeleteEvent(makeRemoteDatabase())
 }
