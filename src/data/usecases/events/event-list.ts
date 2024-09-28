@@ -1,4 +1,4 @@
-import { EventModel } from '@/domain/models'
+import { EventModel } from '@/data/models'
 
 export namespace IEventList {
   export type Model = EventModel
