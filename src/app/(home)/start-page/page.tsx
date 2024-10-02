@@ -2,7 +2,7 @@ import { makeRemoteListEvent } from '@/main/factories/usecases'
 import { PostEvent } from './components'
 import './styles.css'
 
-async function StartPage() {
+export default async function StartPage() {
   const response = makeRemoteListEvent()
   const eventList = await response.getListEvent({ find: false })
 
@@ -14,12 +14,10 @@ async function StartPage() {
 
       <div className="home-event__content">
         <main className="home-event__list">
-          <div className="home-event__list-container">
-            {eventList.length > 0 &&
-              eventList.map((event) => (
-                <PostEvent key={event.id} event={event} />
-              ))}
-          </div>
+          {eventList.length > 0 &&
+            eventList.map((event) => {
+              return <PostEvent key={event.id} event={event} />
+            })}
         </main>
 
         <aside className="home-event__list-info">
@@ -33,20 +31,20 @@ async function StartPage() {
             {eventList.length > 0 &&
               eventList
                 .filter((props) => props.public === true)
-                .map((event) => (
-                  <li
-                    key={event.id}
-                    className="home-event__list-info-public-item"
-                  >
-                    <h4>{event.title}</h4>
-                    <span>{event.type}</span>
-                  </li>
-                ))}
+                .map((event) => {
+                  return (
+                    <li
+                      key={event.id}
+                      className="home-event__list-info-public-item"
+                    >
+                      <h4>{event.title}</h4>
+                      <span>{event.type}</span>
+                    </li>
+                  )
+                })}
           </ul>
         </aside>
       </div>
     </section>
   )
 }
-
-export default StartPage

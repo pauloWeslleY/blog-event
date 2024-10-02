@@ -24,12 +24,6 @@ export default async function EventInfo({
     <div className="wrapper">
       <NavBar />
 
-      {/* {isLoading && (
-        <div className="loader-content">
-          <Loader text="Carregando Informações do evento" />
-        </div>
-      )} */}
-
       <div className="event-info__container">
         <div className="event-info__wrapper">
           <main className="event-info__content">

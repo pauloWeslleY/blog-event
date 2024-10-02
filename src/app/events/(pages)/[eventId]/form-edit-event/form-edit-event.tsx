@@ -1,11 +1,10 @@
 'use client'
 import Image from 'next/image'
-import { Button, Callout, Progress } from '@radix-ui/themes'
+import { Button, Callout } from '@radix-ui/themes'
 import { CircleCheck } from 'lucide-react'
 import { Controller } from 'react-hook-form'
 import { HelperText, Input, Loader, Select, Switch } from '@/app/components/ui'
 import { useSelectEvent } from '@/app/events/hook'
-import { useUploadProgressStore } from '@/main/store'
 import { useFormEditEvent } from './hook/useFormEditEvent'
 import './styles.css'
 
@@ -20,9 +19,7 @@ export function FormEditEvent() {
     handleSubmit,
     handleUpdatedEvent,
   } = useFormEditEvent()
-
   const { loadSelectTypeEvent } = useSelectEvent()
-  const { progress } = useUploadProgressStore()
 
   return (
     <div className="form-edit-event__wrapper">
@@ -54,12 +51,6 @@ export function FormEditEvent() {
         <h3 className="form-edit-event__title">Editar Evento</h3>
         <div className="form-edit-event__separator" />
       </div>
-
-      {progress !== null && (
-        <div className="form-edit-event__progress-wrapper">
-          <Progress value={progress} size="3" duration="30s" />
-        </div>
-      )}
 
       <form onSubmit={handleSubmit(handleUpdatedEvent)}>
         <Input

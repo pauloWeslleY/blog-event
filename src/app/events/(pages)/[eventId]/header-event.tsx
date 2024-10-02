@@ -1,9 +1,7 @@
 'use client'
-
 import { useRouter } from 'next/navigation'
 import { IconButton } from '@radix-ui/themes'
 import { ChevronsLeftIcon } from 'lucide-react'
-import './styles.css'
 
 export function HeaderEvent({ title }: { title: string }) {
   const router = useRouter()

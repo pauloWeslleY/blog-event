@@ -2,6 +2,7 @@ import { ICreateEvent } from '@/data/usecases'
 import {
   makeRemoteCreateEvent,
   makeRemoteError,
+  makeRemoteListEvent,
 } from '@/main/factories/usecases'
 import { useEventStore } from '@/main/store'
 
@@ -19,8 +20,22 @@ export function useCreateEvent() {
     setEventIsSuccess,
   } = useEventStore()
 
+  async function hasExistEvent(title: string) {
+    const response = makeRemoteListEvent()
+    const eventList = await response.getListEvent({ find: false })
+    return eventList.some((event) => event.title === title)
+  }
+
   async function handlerCreateEvent(params: ICreateEvent.Params) {
     setEventIsLoading(true)
+    const isExistEvent = await hasExistEvent(params.title)
+
+    if (isExistEvent) {
+      setEventIsError(true)
+      setEventError('Evento já existente!')
+      return
+    }
+
     try {
       const event = makeRemoteCreateEvent()
       const { data, error } = await event.createEvent(params)
@@ -28,7 +43,7 @@ export function useCreateEvent() {
 
       if (hasErroEvent) {
         setEventIsError(true)
-        setEventError(error?.code)
+        setEventError(hasErroEvent.code)
         return
       }
 

@@ -1,7 +1,7 @@
-@import "@radix-ui/colors/black-alpha.css";
-@import "@radix-ui/colors/green.css";
-@import "@radix-ui/colors/mauve.css";
-@import "@radix-ui/colors/violet.css";
+@import '@radix-ui/colors/black-alpha.css';
+@import '@radix-ui/colors/green.css';
+@import '@radix-ui/colors/mauve.css';
+@import '@radix-ui/colors/violet.css';
 
 /* reset */
 button,
@@ -13,7 +13,7 @@ input {
 .auth-wrapper {
   display: grid;
   grid-template-columns: 1150px 3fr;
-  grid-template-areas: "banner form";
+  grid-template-areas: 'banner form';
   grid-template-rows: 1fr;
   min-height: 100vh;
   width: 100%;
@@ -22,22 +22,23 @@ input {
       rgba(0, 0, 0, 0.8),
       rgba(109, 40, 217, 0.5)
     ),
-    url("../../../public/background-auth.svg");
+    url('../../../public/background-auth.svg');
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.auth-wrapper .auth-banner {
+.auth-banner {
   grid-area: banner;
 }
 
-.auth-wrapper .auth-form {
+.auth-form {
   grid-area: form;
+  width: 100%;
   place-self: center;
 }
 
-.auth-wrapper .tabs-root {
+.auth-form .tabs-root {
   display: flex;
   flex-direction: column;
   width: 25em;
@@ -46,7 +47,7 @@ input {
   border-radius: 1em;
 }
 
-.auth-wrapper .tabs-root > .rt-TabsRoot .rt-TabsList {
+.auth-form .tabs-root > .rt-TabsRoot .rt-TabsList {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -55,12 +56,12 @@ input {
   border-top-right-radius: 1em;
 }
 
-.auth-wrapper .tabs-root > .rt-TabsRoot .rt-TabsList > button.rt-TabsTrigger {
+.auth-form .tabs-root > .rt-TabsRoot .rt-TabsList > button.rt-TabsTrigger {
   cursor: pointer;
   flex: 1;
 }
 
-.auth-wrapper
+.auth-form
   .tabs-root
   > .rt-TabsRoot
   .rt-TabsList
@@ -72,24 +73,24 @@ input {
   background-color: transparent;
 }
 
-.auth-wrapper
+.auth-form
   .tabs-root
   > .rt-TabsRoot
   .rt-TabsList
   button.rt-TabsTrigger.rt-BaseTabListTrigger:where(
-    [data-state="active"],
+    [data-state='active'],
     [data-active]
   ) {
   flex: 1;
   background: var(--violet-6);
 }
 
-.auth-wrapper
+.auth-form
   .tabs-root
   > .rt-TabsRoot
   .rt-TabsList
   button.rt-TabsTrigger.rt-BaseTabListTrigger:where(
-    [data-state="active"],
+    [data-state='active'],
     [data-active]
   )
   .rt-TabsTriggerInner {
@@ -97,7 +98,7 @@ input {
   font-weight: 600;
 }
 
-.auth-wrapper .tabs-content {
+.auth-form .tabs-content {
   flex-grow: 1;
   padding: 0.9em;
   outline: none;
@@ -106,7 +107,7 @@ input {
   border-bottom-right-radius: 1em;
 }
 
-.auth-wrapper .tabs-content form {
+.auth-form .tabs-content form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -115,35 +116,60 @@ input {
   gap: 0.8em;
 }
 
-.auth-wrapper .tabs-content form > .rt-Button {
+.auth-form .tabs-content form > .rt-Button {
   width: 100%;
   text-transform: uppercase;
   letter-spacing: 1.2px;
 }
 
-.auth-wrapper .tabs-content form .rt-CalloutRoot {
+.auth-form .tabs-content form .rt-CalloutRoot {
   width: 100%;
 }
 
-.auth-wrapper .tabs-content .tabs-actions {
+.auth-form .tabs-content .tabs-actions {
   padding: 0.9em;
   display: flex;
   justify-content: center;
   gap: 0.5em;
 }
 
-.auth-wrapper .tabs-content .tabs-actions .tabs-actions--separator {
+.auth-form .tabs-content .tabs-actions .tabs-actions--separator {
   background-color: var(--zinc-500);
   width: 1px;
   height: 1.5em;
 }
 
-.auth-wrapper .tabs-content .tabs-actions a {
+.auth-form .tabs-content .tabs-actions a {
   text-decoration: none;
   color: var(--violet-11);
   transition: 0.2s ease-in;
 }
 
-.auth-wrapper .tabs-content .tabs-actions a:hover {
+.auth-form .tabs-content .tabs-actions a:hover {
   color: var(--zinc-300);
+}
+
+@media (max-width: 900px) {
+  .auth-wrapper {
+    min-height: 100dvh;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'form';
+    align-items: center;
+  }
+
+  .auth-banner {
+    display: none;
+  }
+
+  .auth-form {
+    grid-area: form;
+    place-self: initial;
+    justify-self: center;
+    height: fit-content;
+    width: 70%;
+  }
+
+  .auth-form .tabs-root {
+    width: 100%;
+  }
 }

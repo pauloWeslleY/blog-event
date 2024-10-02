@@ -20,7 +20,7 @@ export default async function Events() {
       </header>
 
       <div className="events__wrapper">
-        {eventList.length < 0 ? (
+        {eventList.length <= 0 ? (
           <p>Não há eventos cadastrado!</p>
         ) : (
           <EventList eventList={eventList} />

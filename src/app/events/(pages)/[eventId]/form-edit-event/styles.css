@@ -15,7 +15,7 @@
   border-radius: 1.2em;
 }
 
-.form-edit-event__banner>img {
+.form-edit-event__banner > img {
   object-fit: cover;
   border-radius: 1.2em;
 }
@@ -46,17 +46,10 @@
   background-color: var(--violet-3);
 }
 
-.form-edit-event__progress-wrapper {
-  display: flex;
-  gap: 0.25em;
-  height: 2em;
-  padding-inline: 15em;
-}
-
 .form-edit-event__wrapper form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 0.45em;
+  gap: 0.45em;
   padding-inline: 2.5em;
 }
 
@@ -68,8 +61,8 @@
   gap: 0.45em;
 }
 
-.form-edit-event__section .form-edit-event__input-date-event,
-.form-edit-event__section .form-edit-event__input-hour-event {
+.form-edit-event__input-date-event,
+.form-edit-event__input-hour-event {
   flex: 1;
 }
 
@@ -88,8 +81,51 @@
   justify-content: center;
 }
 
-.form-edit-event__footer>.rt-BaseButton {
+.form-edit-event__footer > .rt-BaseButton {
   text-transform: uppercase;
   width: 25em;
   margin-top: 0.5em;
+}
+
+@media (max-width: 980px) {
+  .form-edit-event__wrapper form {
+    width: 100%;
+    grid-template-columns: 1fr;
+    align-items: center;
+    padding-inline: 1em;
+  }
+
+  .form-edit-event__footer,
+  .form-edit-event__wrapper form .fieldset.form-edit-event__input-file {
+    grid-column: span 1;
+  }
+
+  .form-edit-event__wrapper form div.form-edit-event__section {
+    grid-column: span 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fieldset--input {
+    width: 100%;
+  }
+
+  .form-edit-event__select-wrapper {
+    width: 100%;
+  }
+
+  .form-edit-event__select-wrapper button.select--trigger {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .form-edit-event__header-wrapper {
+    width: 100%;
+    padding-inline: 0.5em;
+  }
+
+  .form-edit-event__footer > .rt-BaseButton {
+    width: 100%;
+  }
 }

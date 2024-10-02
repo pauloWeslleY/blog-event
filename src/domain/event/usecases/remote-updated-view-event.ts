@@ -4,7 +4,6 @@ import { COLLECTIONS } from '@/infra/firebase/collections'
 import { IUpdatedViewEvent } from '@/data/usecases'
 
 export class RemoteUpdatedViewEvent implements IUpdatedViewEvent {
-  // eslint-disable-next-line prettier/prettier
   constructor(private readonly database: IFirebase) {}
 
   async updatedViewEvent(params: IUpdatedViewEvent.Params): Promise<void> {

@@ -1,3 +1,4 @@
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { ICreateEvent } from '@/data/usecases'
 import { COLLECTIONS, IFirebase } from '@/infra/firebase'
 import { Event } from '@/domain/event'
@@ -23,7 +24,13 @@ export class RemoteCreateEvent implements ICreateEvent {
       this.collection,
     )
 
-    const newEvent = new Event({ ...params })
+    const fileURLRef = `events/${params.title}/${params.photoUrl.name}`
+    const metadata = { contentType: 'image/jpeg' }
+    const storageRef = ref(this.database.storage(), fileURLRef)
+    const upload = await uploadBytes(storageRef, params.photoUrl, metadata)
+    const photoUrlDownload = await getDownloadURL(upload.ref)
+
+    const newEvent = new Event({ ...params, photoUrl: photoUrlDownload })
     return await event.save(newEvent)
   }
 }

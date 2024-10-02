@@ -7,7 +7,7 @@ export namespace ICreateEvent {
     description: string
     hours: string
     date: string
-    photoUrl: string
+    photoUrl: File
     type: string
     ownerId: string
   }
